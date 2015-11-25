@@ -1,0 +1,33 @@
+{
+  "name": "tickets-react",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mr-deer/tickets-react.git"
+  },
+  "author": "Aliaksei Krasikau",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mr-deer/tickets-react/issues"
+  },
+  "homepage": "https://github.com/mr-deer/tickets-react#readme",
+  "dependencies": {
+    "flux": "^2.1.1",
+    "history": "^1.13.0",
+    "react": "^0.14.2",
+    "react-dom": "^0.14.2",
+    "react-router": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.1.4",
+    "babel-loader": "^6.1.0",
+    "babel-preset-es2015": "^6.1.4",
+    "babel-preset-react": "^6.1.4",
+    "webpack": "^1.12.4"
+  }
+}
