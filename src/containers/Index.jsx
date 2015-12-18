@@ -1,9 +1,10 @@
 import React from 'react';
+import history from '../history';
 
 export default React.createClass({
   render() {
     return <div>
-      <button>Sign In</button>
+      <button onClick={() => history.pushState(null, '/signin')}>Sign In</button>
       <button>Sign Up</button>
     </div>;
   }
