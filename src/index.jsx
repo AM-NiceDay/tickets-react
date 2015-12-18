@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/App';
-import IndexWithTicket from './components/IndexWithTicket';
+import App from './containers/App';
 
-const ticket = {
-  id: 123,
-  dateCreated: new Date()
-};
-
-ReactDOM.render(<IndexWithTicket ticket={ticket} />, document.getElementById('app'));
+ReactDOM.render(
+  <App />,
+  document.getElementById('app'));
