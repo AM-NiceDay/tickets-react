@@ -14,6 +14,13 @@ import BuyTicket from './containers/BuyTicket';
 const store = configureStore();
 syncReduxAndRouter(history, store);
 
+function requireAuth(nextState, replaceState) {
+  const user = store.getState().user;
+  if (!user.get('loggedIn')) {
+    replaceState({ nextPathname: nextState.location.pathname }, '/signin');
+  }
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <div>
@@ -21,7 +28,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={Index} />
           <Route path="signin" component={SignIn} />
-          <Route path="buy" component={BuyTicket} />
+          <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
         </Route>
       </Router>
       <DevTools />

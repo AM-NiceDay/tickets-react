@@ -7,6 +7,7 @@ const SignIn = React.createClass({
 
   handleSignIn() {
     const { dispatch } = this.props;
+    const nextPathname = this.props.nextPathname || '/';
 
     const phoneNumber = this.refs.phoneNumber.value;
     const password = this.refs.phoneNumber.value;
@@ -15,7 +16,8 @@ const SignIn = React.createClass({
       phoneNumber,
       password
     }));
-    dispatch(pushPath('/'));
+
+    dispatch(pushPath(nextPathname));
   },
 
   render() {
@@ -27,4 +29,14 @@ const SignIn = React.createClass({
   }
 });
 
-export default connect()(SignIn);
+export default connect(state => {
+  const routingState = state.routing.state;
+
+  if (routingState) {
+    return {
+      nextPathname: routingState.nextPathname
+    }
+  }
+
+  return {};
+})(SignIn);
