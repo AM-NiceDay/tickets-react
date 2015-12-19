@@ -2,9 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute } from 'react-router';
 import history from './history';
+import { createStore } from 'redux';
 import App from './containers/App';
 import Index from './containers/Index';
 import SignIn from './containers/SignIn';
+import reducers from './reducers/index';
+
+const store = createStore(reducers);
 
 ReactDOM.render(
   <Router history={history}>
