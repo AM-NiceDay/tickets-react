@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/user';
+import { pushPath } from 'redux-simple-router';
 
 const SignIn = React.createClass({
 
@@ -14,6 +15,7 @@ const SignIn = React.createClass({
       phoneNumber,
       password
     }));
+    dispatch(pushPath('/'));
   },
 
   render() {

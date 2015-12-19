@@ -1,11 +1,18 @@
 import React from 'react';
-import history from '../history';
+import { connect } from 'react-redux';
+import IndexLoggedIn from '../components/IndexLoggedIn';
+import IndexUnauth from '../components/IndexUnauth';
 
-export default React.createClass({
+const Index = React.createClass({
   render() {
-    return <div>
-      <button onClick={() => history.pushState(null, '/signin')}>Sign In</button>
-      <button>Sign Up</button>
-    </div>;
+    return this.props.user.get('loggedIn') ?
+      <IndexLoggedIn phoneNumber={this.props.user.get('phoneNumber')} /> :
+      <IndexUnauth />;
   }
 });
+
+export default connect(state => {
+  return ({
+    user: state.user
+  })
+})(Index);
