@@ -12,7 +12,11 @@ export default React.createClass({
   render() {
     return <div>
       <p>Hello, { this.props.phoneNumber }</p>
-      <Link to="/buy">Buy ticket</Link>
+      {
+        this.props.ticket.get('busId') ?
+          <p>Ticket: {this.props.ticket.get('busId')} - {this.props.ticket.get('dateCreated').toString()}</p> :
+          <Link to="/buy">Buy ticket</Link>
+      }
     </div>;
   }
 });
