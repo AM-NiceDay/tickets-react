@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { checkBus } from '../actions/bus';
+import { checkBus, uncheckBus } from '../actions/bus';
 
 const BuyTicket = React.createClass({
 
@@ -10,6 +10,8 @@ const BuyTicket = React.createClass({
 
     if (busId.length === 3) {
       dispatch(checkBus(busId));
+    } else {
+      dispatch(uncheckBus());
     }
   },
 

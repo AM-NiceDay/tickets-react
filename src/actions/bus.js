@@ -1,4 +1,5 @@
 export const CHECK_BUS = 'CHECK_BUS';
+export const UNCHECK_BUS = 'UNCHECK_BUS';
 
 const buses = {
   '100': {
@@ -22,4 +23,10 @@ export function checkBus(busId) {
       route: buses[busId].route
     }
   };
+}
+
+export function uncheckBus() {
+  return {
+    type: UNCHECK_BUS
+  }
 }

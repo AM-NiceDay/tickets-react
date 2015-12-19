@@ -1,4 +1,4 @@
-import { CHECK_BUS } from '../actions/bus';
+import { CHECK_BUS, UNCHECK_BUS } from '../actions/bus';
 import { Map } from 'immutable';
 
 export default function(state = Map(), action) {
@@ -13,6 +13,8 @@ export default function(state = Map(), action) {
         route
       };
     }
+    case UNCHECK_BUS:
+      return Map();
     default:
       return state;
   }
