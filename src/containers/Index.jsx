@@ -14,5 +14,5 @@ const Index = React.createClass({
 export default connect(state => {
   return ({
     user: state.user
-  })
+  });
 })(Index);
