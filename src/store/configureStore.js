@@ -1,8 +1,12 @@
-import { createStore, compose } from 'redux';
+import { applyMiddleware, createStore, compose } from 'redux';
 import reducers from '../reducers/index';
+import thunk from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 
 const finalCreateStore = compose(
+  applyMiddleware(
+    thunk
+  ),
   DevTools.instrument()
 )(createStore);
 
