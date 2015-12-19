@@ -9,6 +9,7 @@ import DevTools from './containers/DevTools';
 import App from './containers/App';
 import Index from './containers/Index';
 import SignIn from './containers/SignIn';
+import BuyTicket from './containers/BuyTicket';
 
 const store = configureStore();
 syncReduxAndRouter(history, store);
@@ -20,6 +21,7 @@ ReactDOM.render(
         <Route path="/" component={App}>
           <IndexRoute component={Index} />
           <Route path="signin" component={SignIn} />
+          <Route path="buy" component={BuyTicket} />
         </Route>
       </Router>
       <DevTools />
