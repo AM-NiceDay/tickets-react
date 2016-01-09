@@ -1,22 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { pushPath } from 'redux-simple-router';
 
-const { string } = React.PropTypes;
-
-export default React.createClass({
-
-  propTypes: {
-    phoneNumber: string.isRequired
-  },
-
+export default class IndexLoggedIn extends React.Component {
   render() {
     return <div>
       <p>Hello, { this.props.phoneNumber }</p>
-      {
-        this.props.ticket.get('busId') ?
-          <p>Ticket: {this.props.ticket.get('busId')} - {this.props.ticket.get('dateCreated').toString()}</p> :
-          <Link to="/buy">Buy ticket</Link>
+      { this.props.ticket.get('busId') ?
+          <p>Ticket: { this.props.ticket.get('busId') } - { this.props.ticket.get('dateCreated').toString() }</p> :
+          <button onClick={ this.props.transmitToBuy }>Buy ticket</button>
       }
     </div>;
   }
-});
+}
