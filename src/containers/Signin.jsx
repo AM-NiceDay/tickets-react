@@ -10,7 +10,7 @@ const SignIn = React.createClass({
     const nextPathname = this.props.nextPathname || '/';
 
     const phoneNumber = this.refs.phoneNumber.value;
-    const password = this.refs.phoneNumber.value;
+    const password = this.refs.password.value;
 
     dispatch(signIn({
       phoneNumber,
@@ -23,7 +23,7 @@ const SignIn = React.createClass({
   render() {
     return <div>
       <input type="text" ref="phoneNumber" placeholder="Phone number" />
-      <input type="text" ref="Password" placeholder="Password" />
+      <input type="text" ref="password" placeholder="Password" />
       <button onClick={this.handleSignIn}>Sign In</button>
     </div>;
   }

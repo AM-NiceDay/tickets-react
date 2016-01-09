@@ -4,12 +4,17 @@ import { Map, fromJS } from 'immutable';
 export default function(state = Map(), action) {
   switch(action.type) {
     case SIGN_IN: {
-      const {phoneNumber} = action.payload;
+      switch(action.meta.status) {
+        case 'REQUEST':
+          return fromJS(action.payload);
+        case 'SUCCESS':
+          return fromJS(action.payload.user).merge({
+            token: action.payload.token,
+            loggedIn: true
+          });
+      }
 
-      return Map({
-        loggedIn: true,
-        phoneNumber
-      });
+      break;
     }
     default:
       return state;
