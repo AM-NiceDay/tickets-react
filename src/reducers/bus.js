@@ -1,17 +1,27 @@
 import { CHECK_BUS, UNCHECK_BUS } from '../actions/bus';
-import { Map } from 'immutable';
+import { Map, fromJS } from 'immutable';
 
 export default function(state = Map(), action) {
   switch (action.type) {
     case CHECK_BUS: {
-      const { id, checked, exist, route } = action.payload;
+      switch(action.meta.status) {
+        case 'REQUEST':
+          return Map({
+            isFetching: true
+          });
+        case 'SUCCESS':
+          return fromJS(action.payload).merge({
+            checked: true,
+            exist: true
+          });
+        case 'FAILURE':
+          return Map({
+            checked: true,
+            exist: false
+          });
+      }
 
-      return {
-        id,
-        checked,
-        exist,
-        route
-      };
+      break;
     }
     case UNCHECK_BUS:
       return Map();
