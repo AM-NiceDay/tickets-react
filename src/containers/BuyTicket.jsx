@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { checkBus, uncheckBus } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
 import { pushPath } from 'redux-simple-router';
+import CheckMessage from '../components/CheckMessage';
 
 const BuyTicket = React.createClass({
 
@@ -41,11 +42,12 @@ const BuyTicket = React.createClass({
   },
 
   render() {
-    const { checked, exist } = this.props.bus.toJS();
+    const { checked, exist, route, routeName } = this.props.bus.toJS();
+    const checkProps = { checked, exist, route, routeName };
 
     return <div>
       <input type="text" ref="busId" placeholder="Bus Id" onKeyUp={ this.handleCheckBus } />
-      <p>{ this.checkMessage() }</p>
+      <CheckMessage { ...checkProps } />
       <button disabled={ !checked || !exist } onClick={ this.handleBuyTicket } >Buy</button>
     </div>;
   }
