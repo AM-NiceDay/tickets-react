@@ -14,7 +14,9 @@ const finalCreateStore = compose(
     deserialize: (serializedData) => ({
       user: fromJS(JSON.parse(serializedData))
     }),
-    merge: (initialState, persistedState) => initialState.merge(persistedState)
+    merge: (initialState, persistedState) => {
+      return Object.assign(initialState, persistedState);
+    }
   }),
   DevTools.instrument()
 )(createStore);
