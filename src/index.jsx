@@ -24,11 +24,11 @@ function requireAuth(nextState, replaceState) {
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={history}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Index} />
-          <Route path="signin" component={SignIn} />
-          <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
+      <Router history={ history }>
+        <Route path="/" component={ App }>
+          <IndexRoute component={ Index } />
+          <Route path="signin" component={ SignIn } />
+          <Route path="buy" component={ BuyTicket } onEnter={ requireAuth } />
         </Route>
       </Router>
       <DevTools />

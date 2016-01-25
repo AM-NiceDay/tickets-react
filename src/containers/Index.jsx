@@ -16,9 +16,7 @@ const Index = React.createClass({
   }
 });
 
-export default connect(state => {
-  return ({
+export default connect(state => ({
     user: state.user,
     ticket: state.ticket
-  });
-})(Index);
+  }))(Index);
