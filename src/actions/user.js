@@ -1,4 +1,5 @@
 export const SIGN_IN = 'SIGN_IN';
+export const LOGOUT = 'LOGOUT';
 
 export function signIn(user) {
   return dispatch => {
@@ -40,4 +41,10 @@ export function signIn(user) {
         });
       });
   };
+}
+
+export function logout() {
+  return {
+    type: LOGOUT
+  }
 }

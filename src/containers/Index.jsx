@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import IndexLoggedIn from '../components/IndexLoggedIn';
 import IndexUnauth from '../components/IndexUnauth';
+import { logout } from '../actions/user';
 
 const Index = React.createClass({
   render() {
@@ -11,6 +12,7 @@ const Index = React.createClass({
         phoneNumber={ this.props.user.get('phoneNumber') }
         ticket={ this.props.ticket }
         transmitToBuy={ () => this.props.dispatch(pushPath('/buy')) }
+        logout={ () => this.props.dispatch(logout()) }
       /> :
       <IndexUnauth />;
   }

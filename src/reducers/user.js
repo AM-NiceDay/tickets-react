@@ -1,4 +1,4 @@
-import { SIGN_IN } from '../actions/user';
+import { SIGN_IN, LOGOUT } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 
 export default function(state = Map(), action) {
@@ -16,6 +16,8 @@ export default function(state = Map(), action) {
 
       break;
     }
+    case LOGOUT:
+      return Map();
     default:
       return state;
   }
