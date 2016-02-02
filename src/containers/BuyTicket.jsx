@@ -9,10 +9,10 @@ const BuyTicket = React.createClass({
 
   handleCheckBus() {
     const { dispatch } = this.props;
-    const busId = this.refs.busId.value;
+    const busCode = this.refs.busCode.value;
 
-    if (busId.length > 3) {
-      dispatch(checkBus(busId));
+    if (busCode.length === 4) {
+      dispatch(checkBus(busCode));
     } else {
       dispatch(uncheckBus());
     }
@@ -33,10 +33,10 @@ const BuyTicket = React.createClass({
   handleBuyTicket() {
     const { dispatch } = this.props;
     const { checked, exist } = this.props.bus;
-    const busId = this.refs.busId.value;
+    const busCode = this.refs.busCode.value;
 
     if (checked && exist) {
-      dispatch(buyTicket(busId));
+      dispatch(buyTicket(busCode));
       dispatch(pushPath('/'));
     }
   },
@@ -46,7 +46,7 @@ const BuyTicket = React.createClass({
     const checkProps = { checked, exist, route, routeName };
 
     return <div>
-      <input type="text" ref="busId" placeholder="Bus Id" onKeyUp={ this.handleCheckBus } />
+      <input type="text" ref="busCode" placeholder="Bus Id" onKeyUp={ this.handleCheckBus } />
       <CheckMessage { ...checkProps } />
       <button disabled={ !checked || !exist } onClick={ this.handleBuyTicket } >Buy</button>
     </div>;
