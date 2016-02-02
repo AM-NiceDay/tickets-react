@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { checkBus, uncheckBus } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
-import { pushPath } from 'redux-simple-router';
 import CheckMessage from '../components/CheckMessage';
 
 const BuyTicket = React.createClass({
@@ -37,7 +36,6 @@ const BuyTicket = React.createClass({
 
     if (checked && exist) {
       dispatch(buyTicket(user.get('_id'), busCode));
-      dispatch(pushPath('/'));
     }
   },
 

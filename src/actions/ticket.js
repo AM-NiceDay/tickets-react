@@ -33,7 +33,8 @@ export function buyTicket(userId, busCode) {
           type: BUY_TICKET,
           payload: ticket,
           meta: {
-            status: 'SUCCESS'
+            status: 'SUCCESS',
+            path: '/'
           }
         });
       });
