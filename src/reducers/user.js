@@ -1,9 +1,10 @@
-import { SIGN_IN, LOGOUT } from '../actions/user';
+import { SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 
 export default function(state = Map(), action) {
   switch(action.type) {
-    case SIGN_IN: {
+    case SIGN_IN:
+    case SIGN_UP: {
       switch(action.meta.status) {
         case 'REQUEST':
           return fromJS(action.payload);
