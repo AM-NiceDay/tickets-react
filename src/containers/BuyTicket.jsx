@@ -31,12 +31,12 @@ const BuyTicket = React.createClass({
   },
 
   handleBuyTicket() {
-    const { dispatch } = this.props;
-    const { checked, exist } = this.props.bus;
+    const { dispatch, user } = this.props;
+    const { checked, exist } = this.props.bus.toJS();
     const busCode = this.refs.busCode.value;
 
     if (checked && exist) {
-      dispatch(buyTicket(busCode));
+      dispatch(buyTicket(user.get('_id'), busCode));
       dispatch(pushPath('/'));
     }
   },
@@ -54,5 +54,6 @@ const BuyTicket = React.createClass({
 });
 
 export default connect(state => ({
+  user: state.user,
   bus: state.bus
 }))(BuyTicket);
