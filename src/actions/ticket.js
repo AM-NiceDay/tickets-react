@@ -1,3 +1,5 @@
+import { pushPath } from 'redux-simple-router';
+
 export const BUY_TICKET = 'BUY_TICKET';
 
 export function buyTicket(userId, busCode) {
@@ -29,13 +31,15 @@ export function buyTicket(userId, busCode) {
     })
       .then(response => response.json())
       .then(ticket => {
-        dispatch({
-          type: BUY_TICKET,
-          payload: ticket,
-          meta: {
-            status: 'SUCCESS',
-            path: '/'
-          }
+        dispatch(pushPath('/'));
+        setTimeout(() => {
+          dispatch({
+            type: BUY_TICKET,
+            payload: ticket,
+            meta: {
+              status: 'SUCCESS'
+            }
+          });
         });
       });
   };

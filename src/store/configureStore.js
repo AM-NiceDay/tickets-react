@@ -1,15 +1,14 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import reducers from '../reducers/index';
 import thunk from 'redux-thunk';
-import persistState from 'redux-localstorage'
+import persistState from 'redux-localstorage';
 import DevTools from '../containers/DevTools';
 import pushPathMiddleware from '../middlewares/pushPathMiddleware';
 import { fromJS } from 'immutable';
 
 const finalCreateStore = compose(
   applyMiddleware(
-    thunk,
-    pushPathMiddleware
+    thunk
   ),
   persistState('user', {
     serialize: (subset) => JSON.stringify(subset.user.toJS()),
