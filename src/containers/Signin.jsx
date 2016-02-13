@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import { signIn } from '../actions/user';
 import { pushPath } from 'redux-simple-router';
@@ -6,37 +7,37 @@ import { pushPath } from 'redux-simple-router';
 const SignIn = React.createClass({
 
   handleSignIn() {
-    const { dispatch } = this.props;
-    const nextPathname = this.props.nextPathname || '/';
-
-    const phoneNumber = this.refs.phoneNumber.value;
-    const password = this.refs.password.value;
+    const { dispatch, nextPathname = '/' } = this.props;
+    const { phoneNumber, password } = _.mapValues(this.refs, 'value');
 
     dispatch(signIn({
       phoneNumber,
       password
-    }));
-
-    dispatch(pushPath(nextPathname));
+    })).payload.promise
+      .then(result => {
+        if (!result.error) {
+          dispatch(pushPath(nextPathname));
+        }
+      });
   },
 
   render() {
-    return <div>
-      <input type="text" ref="phoneNumber" placeholder="Phone number" />
-      <input type="text" ref="password" placeholder="Password" />
-      <button onClick={this.handleSignIn}>Sign In</button>
-    </div>;
+    return this.props.user.loading ?
+      <span>Loading</span> :
+      <div>
+        <input type="text" ref="phoneNumber" placeholder="Phone number" />
+        <input type="text" ref="password" placeholder="Password" />
+        <button onClick={ this.handleSignIn }>Sign In</button>
+      </div>;
   }
 });
 
 export default connect(state => {
   const routingState = state.routing.state;
+  const nextPathname = routingState ? routingState.nextPathname : undefined;
 
-  if (routingState) {
-    return {
-      nextPathname: routingState.nextPathname
-    }
-  }
-
-  return {};
+  return {
+    nextPathname,
+    user: state.user.toJS()
+  };
 })(SignIn);
