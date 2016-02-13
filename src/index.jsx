@@ -7,9 +7,11 @@ import configureStore from './store/configureStore';
 import history from './history';
 import routes from './routes';
 import DevTools from './containers/DevTools';
+import { init } from './utils/fetch';
 
 const store = configureStore();
 syncReduxAndRouter(history, store);
+init(store);
 
 function requireAuth(nextState, replaceState) {
   const user = store.getState().user;
