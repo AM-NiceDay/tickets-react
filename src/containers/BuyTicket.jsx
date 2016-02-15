@@ -17,18 +17,6 @@ const BuyTicket = React.createClass({
     }
   },
 
-  checkMessage() {
-    const { checked, exist, route, routeName } = this.props.bus.toJS();
-
-    if (checked) {
-      if (exist) {
-        return `Bus route: ${route} - ${routeName}`;
-      }
-
-      return `Bus doesn't exist`;
-    }
-  },
-
   handleBuyTicket() {
     const { dispatch, user } = this.props;
     const { checked, exist } = this.props.bus.toJS();
@@ -40,8 +28,8 @@ const BuyTicket = React.createClass({
   },
 
   render() {
-    const { checked, exist, route, routeName } = this.props.bus.toJS();
-    const checkProps = { checked, exist, route, routeName };
+    const { checked, exist, route, routeName, loading } = this.props.bus.toJS();
+    const checkProps = { checked, exist, route, routeName, loading };
 
     return <div>
       <input type="text" ref="busCode" placeholder="Bus Id" onKeyUp={ this.handleCheckBus } />
