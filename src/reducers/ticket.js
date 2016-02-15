@@ -3,21 +3,15 @@ import { Map, fromJS } from 'immutable';
 
 export default function(state = Map(), action) {
   switch (action.type) {
-    case BUY_TICKET: {
-      const { busCode } = action.payload;
-
-      switch(action.meta.status) {
-        case 'REQUEST':
-          return Map({
-            busCode,
-            isFetching: true
-          });
-        case 'SUCCESS':
-          return fromJS(action.payload);
-      }
-
-      break;
-    }
+    case `${BUY_TICKET}_LOADING`:
+      return Map({
+        busCode: action.payload,
+        loading: true
+      });
+    case `${BUY_TICKET}_SUCCESS`:
+      return fromJS(action.payload);
+    case `${BUY_TICKET}_ERROR`:
+      return fromJS(action.payload);
     default:
       return state;
   }

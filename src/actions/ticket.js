@@ -1,49 +1,22 @@
-import { pushPath } from 'redux-simple-router';
-import { batchActions } from 'redux-batched-actions';
+import { post } from '../utils/fetch';
 
 export const BUY_TICKET = 'BUY_TICKET';
 
 export function buyTicket(userId, busCode) {
-  return dispatch => {
 
-    dispatch({
-      type: BUY_TICKET,
-      payload: {
+  const cityId = Number(String(busCode)[0]);
+  const busId = Number(String(busCode).slice(1));
+
+  return {
+    type: BUY_TICKET,
+    payload: {
+      data: {
         busCode,
         dateCreated: new Date()
       },
-      meta: {
-        status: 'REQUEST'
-      }
-    });
-
-    const cityId = Number(String(busCode)[0]);
-    const busId = Number(String(busCode).slice(1));
-
-    fetch(`http://localhost:3000/cities/${cityId}/buses/${busId}/tickets`, {
-      method: 'post',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+      promise: post(`/cities/${cityId}/buses/${busId}/tickets`, {
         userId
       })
-    })
-      .then(response => response.json())
-      .then(ticket => {
-        setTimeout(() => {
-          dispatch(batchActions([
-            {
-              type: BUY_TICKET,
-              payload: ticket,
-              meta: {
-                status: 'SUCCESS'
-              }
-            },
-            pushPath('/')
-          ]));
-        });
-      });
+    }
   };
 }

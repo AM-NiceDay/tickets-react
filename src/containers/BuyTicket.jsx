@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { pushPath } from 'redux-simple-router';
 import { checkBus, uncheckBus } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
 import CheckMessage from '../components/CheckMessage';
@@ -23,7 +24,12 @@ const BuyTicket = React.createClass({
     const busCode = this.refs.busCode.value;
 
     if (checked && exist) {
-      dispatch(buyTicket(user.get('_id'), busCode));
+      dispatch(buyTicket(user.get('_id'), busCode)).payload.promise
+        .then(result => {
+          if (!result.error) {
+            dispatch(pushPath('/'));
+          }
+        });
     }
   },
 
@@ -34,12 +40,16 @@ const BuyTicket = React.createClass({
     return <div>
       <input type="text" ref="busCode" placeholder="Bus Id" onKeyUp={ this.handleCheckBus } />
       <CheckMessage { ...checkProps } />
-      <button disabled={ !checked || !exist } onClick={ this.handleBuyTicket } >Buy</button>
+      { this.props.ticket.get('loading') ?
+        <span>Loading</span> :
+        <button disabled={ !checked || !exist } onClick={ this.handleBuyTicket }>Buy</button>
+      }
     </div>;
   }
 });
 
 export default connect(state => ({
   user: state.user,
-  bus: state.bus
+  bus: state.bus,
+  ticket: state.ticket
 }))(BuyTicket);
