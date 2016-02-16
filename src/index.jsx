@@ -6,7 +6,6 @@ import { syncReduxAndRouter } from 'redux-simple-router';
 import configureStore from './store/configureStore';
 import history from './history';
 import routes from './routes';
-import DevTools from './containers/DevTools';
 import { init } from './utils/fetch';
 
 const store = configureStore();
@@ -24,7 +23,6 @@ ReactDOM.render(
   <Provider store={store}>
     <div>
       <Router history={ history } routes={ routes(requireAuth) } />
-      <DevTools />
     </div>
   </Provider>,
   document.getElementById('app'));

@@ -1,10 +1,8 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import { enableBatching } from 'redux-batched-actions';
 import localstorageEnhancer from './localstorageEnhancer';
 import reducers from '../reducers/index';
-import DevTools from '../containers/DevTools';
 
 const enhancer = compose(
   applyMiddleware(
@@ -14,17 +12,9 @@ const enhancer = compose(
     })
   ),
   localstorageEnhancer,
-  DevTools.instrument()
+  window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 export default function(initialState = {}) {
-  const store = createStore(enableBatching(reducers), initialState, enhancer);
-
-  if (module.hot) {
-    module.hot.accept('../reducers', () =>
-      store.replaceReducer(enableBatching(require('../reducers')).default)
-    );
-  }
-
-  return store;
+  return createStore(reducers, initialState, enhancer);;
 }
