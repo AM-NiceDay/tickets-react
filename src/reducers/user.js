@@ -1,8 +1,14 @@
-import { SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
+import { SET_PHONE_NUMBER, SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
 import { Map, fromJS } from 'immutable';
+import R from 'ramda';
 
 export default function(state = Map(), action) {
   switch(action.type) {
+    case SET_PHONE_NUMBER:
+      return state.merge({
+        phoneNumber: action.payload.phoneNumber
+      });
+
     case `${SIGN_IN}_LOADING`:
     case `${SIGN_UP}_LOADING`:
       return fromJS(action.payload).merge({
@@ -21,6 +27,7 @@ export default function(state = Map(), action) {
         error: true,
         loading: false
       });
+
     case LOGOUT:
       return Map();
     default:
