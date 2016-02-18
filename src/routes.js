@@ -7,7 +7,7 @@ import SignUp from './containers/SignUp';
 import BuyTicket from './containers/BuyTicket';
 
 export default (requireAuth) => <Route path="/" component={ App }>
-  <IndexRoute component={ Index } />
+  <IndexRoute component={ Index } onEnter={ requireAuth } />
   <Route path="signin" component={ SignIn } />
   <Route path="signup" component={ SignUp } />
   <Route path="buy" component={ BuyTicket } onEnter={ requireAuth } />
