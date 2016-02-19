@@ -9,6 +9,7 @@ import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
 import SignUpSecondStep from './containers/SignUp/SignUpSecondStep';
 import SignUpThirdStep from './containers/SignUp/SignUpThirdStep';
+import SignUpForthStep from './containers/SignUp/SignUpForthStep';
 import BuyTicket from './containers/BuyTicket';
 
 export default (requireAuth) => <Route path="/" component={App}>
@@ -23,6 +24,7 @@ export default (requireAuth) => <Route path="/" component={App}>
     <Route path="1" component={SignUpFirstStep} />
     <Route path="2" component={SignUpSecondStep} />
     <Route path="3" component={SignUpThirdStep} />
+    <Route path="4" component={SignUpForthStep} />
   </Route>
   <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
 </Route>;

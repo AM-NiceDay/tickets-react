@@ -57,16 +57,15 @@ export function signIn(phoneNumber, password) {
   };
 }
 
-export function signUp(user) {
+export function signUp(phoneNumber, name, lastName, password) {
   return {
     type: 'SIGN_UP',
     payload: {
-      data: user,
       promise: post('/users', {
-        name: user.name,
-        phoneNumber: user.phoneNumber,
-        email: user.email,
-        password: user.password
+        name: name,
+        phoneNumber: phoneNumber,
+        lastName: lastName,
+        password: password
       })
     }
   };

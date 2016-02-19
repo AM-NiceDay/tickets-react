@@ -32,11 +32,11 @@ class Index extends Component {
   }
 
   render() {
-    const phoneNumber = this.props.user.get('phoneNumber');
+    const { name, lastName } = this.props.user.toJS();
 
     return (
       <div>
-        <p>Hello, { phoneNumber }</p>
+        <p>{name} {lastName}</p>
         <button onClick={ this.logout }>Logout</button>
         <button onClick={ this.transmitToBuy }>Buy ticket</button>
         { this.isTicketExists() ?
