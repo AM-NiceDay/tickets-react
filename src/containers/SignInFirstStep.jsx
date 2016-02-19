@@ -18,7 +18,7 @@ class SignInFirstStep extends Component {
     const phoneNumber = Number(this.refs.phoneNumber.value);
 
     dispatch(setPhoneNumber(phoneNumber));
-    dispatch(pushPath('/signin#2'));
+    dispatch(pushPath('/signin/2'));
   }
 
   render() {

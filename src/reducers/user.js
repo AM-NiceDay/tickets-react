@@ -1,4 +1,4 @@
-import { SET_PHONE_NUMBER, SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
+import { SET_PHONE_NUMBER, GET_USER_INFO, SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 import R from 'ramda';
 
@@ -8,10 +8,18 @@ export default function(state = Map(), action) {
       return state.merge({
         phoneNumber: action.payload.phoneNumber
       });
-
+    case `${GET_USER_INFO}_LOADING`:
+      return state.merge({
+        loading: true
+      });
+    case `${GET_USER_INFO}_SUCCESS`:
+      return state.merge({
+        ...action.payload.user,
+        loading: false
+      });
     case `${SIGN_IN}_LOADING`:
     case `${SIGN_UP}_LOADING`:
-      return fromJS(action.payload).merge({
+      return state.merge({
         loading: true
       });
     case `${SIGN_IN}_SUCCESS`:
