@@ -2,6 +2,7 @@ import { get, post } from '../utils/fetch';
 
 export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_NAME = 'SET_NAME';
+export const SET_LAST_NAME = 'SET_LAST_NAME';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
@@ -22,6 +23,15 @@ export function setName(name) {
     type: SET_NAME,
     payload: {
       name
+    }
+  };
+}
+
+export function setLastName(lastName) {
+  return {
+    type: SET_LAST_NAME,
+    payload: {
+      lastName
     }
   };
 }

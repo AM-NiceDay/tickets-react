@@ -1,4 +1,4 @@
-import { SET_PHONE_NUMBER, SET_NAME, GET_USER_INFO, SIGN_IN, SIGN_UP, LOGOUT, SET_NEXT_PATHNAME } from '../actions/user';
+import { SET_PHONE_NUMBER, SET_NAME, SET_LAST_NAME, GET_USER_INFO, SIGN_IN, SIGN_UP, LOGOUT, SET_NEXT_PATHNAME } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 import R from 'ramda';
 
@@ -11,6 +11,10 @@ export default function(state = Map(), action) {
     case SET_NAME:
       return state.merge({
         name: action.payload.name
+      });
+    case SET_LAST_NAME:
+      return state.merge({
+        lastName: action.payload.lastName
       });
     case `${GET_USER_INFO}_LOADING`:
       return state.merge({
