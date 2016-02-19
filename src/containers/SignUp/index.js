@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import { signUp } from '../actions/user';
+import { signUp } from '../../actions/user';
 import { pushPath } from 'redux-simple-router';
 
 const SignUp = React.createClass({

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
-import { getUserInfo, signIn } from '../actions/user';
+import { getUserInfo, signIn } from '../../actions/user';
 
 class SignInSecondStep extends Component {
 

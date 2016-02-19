@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
-import { setPhoneNumber } from '../actions/user';
+import { setPhoneNumber } from '../../actions/user';
 
 class SignInFirstStep extends Component {
 
