@@ -5,6 +5,7 @@ export const GET_USER_INFO = 'GET_USER_INFO';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const LOGOUT = 'LOGOUT';
+export const SET_NEXT_PATHNAME = 'SET_NEXT_PATHNAME';
 
 export function setPhoneNumber(phoneNumber) {
   return {
@@ -55,4 +56,13 @@ export function logout() {
   return {
     type: LOGOUT
   }
+}
+
+export function setNextPathname(nextPathname) {
+  return {
+    type: SET_NEXT_PATHNAME,
+    payload: {
+      nextPathname
+    }
+  };
 }

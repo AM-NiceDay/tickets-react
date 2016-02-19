@@ -1,4 +1,4 @@
-import { SET_PHONE_NUMBER, GET_USER_INFO, SIGN_IN, SIGN_UP, LOGOUT } from '../actions/user';
+import { SET_PHONE_NUMBER, GET_USER_INFO, SIGN_IN, SIGN_UP, LOGOUT, SET_NEXT_PATHNAME } from '../actions/user';
 import { Map, fromJS } from 'immutable';
 import R from 'ramda';
 
@@ -35,9 +35,12 @@ export default function(state = Map(), action) {
         error: true,
         loading: false
       });
-
     case LOGOUT:
       return Map();
+    case SET_NEXT_PATHNAME:
+      return state.merge({
+        nextPathname: action.payload.nextPathname
+      });
     default:
       return state;
   }

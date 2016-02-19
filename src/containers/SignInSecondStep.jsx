@@ -20,7 +20,8 @@ class SignInSecondStep extends Component {
   signInHandler(e) {
     e.preventDefault();
 
-    const { dispatch, user, nextPathname = '/' } = this.props;
+    const { dispatch, user } = this.props;
+    const { nextPathname = '/' } = user;
     const password = this.refs.password.value;
 
     dispatch(signIn(user.phoneNumber, password)).payload.promise
@@ -42,12 +43,6 @@ class SignInSecondStep extends Component {
   }
 }
 
-export default connect(state => {
-  const routingState = state.routing.state;
-  const nextPathname = routingState ? routingState.nextPathname : undefined;
-
-  return {
-    nextPathname,
-    user: state.user.toJS()
-  };
-})(SignInSecondStep);
+export default connect(state => ({
+  user: state.user.toJS()
+}))(SignInSecondStep);

@@ -6,6 +6,7 @@ import { syncReduxAndRouter } from 'redux-simple-router';
 import configureStore from './store/configureStore';
 import history from './history';
 import routes from './routes';
+import { setNextPathname } from './actions/user';
 import { init } from './utils/fetch';
 
 const store = configureStore();
@@ -15,7 +16,8 @@ init(store);
 function requireAuth(nextState, replaceState) {
   const user = store.getState().user;
   if (!user.get('loggedIn')) {
-    replaceState({ nextPathname: nextState.location.pathname }, '/signin');
+    store.dispatch(setNextPathname(nextState.location.pathname));
+    replaceState({}, '/signin');
   }
 }
 
