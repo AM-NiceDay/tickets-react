@@ -14,7 +14,7 @@ import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
 import ShowTicket from './containers/ShowTicket';
 
-export default (requireAuth) => <Route path="/" component={App}>
+export default (requireAuth, requireTicket) => <Route path="/" component={App}>
   <IndexRoute component={Index} onEnter={requireAuth} />
   <Route path="signin" component={SignIn}>
     <IndexRoute component={SignInFirstStep} />
@@ -30,5 +30,5 @@ export default (requireAuth) => <Route path="/" component={App}>
   </Route>
   <Route path="ticket" component={Ticket} />
   <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
-  <Route path="show-ticket" component={ShowTicket} />
+  <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
 </Route>;

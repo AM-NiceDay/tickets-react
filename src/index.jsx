@@ -4,6 +4,7 @@ import { Router } from 'react-router';
 import { Provider } from 'react-redux';
 import { syncReduxAndRouter } from 'redux-simple-router';
 import configureStore from './store/configureStore';
+import _ from 'lodash';
 import history from './history';
 import routes from './routes';
 import { setNextPathname } from './actions/user';
@@ -21,10 +22,17 @@ function requireAuth(nextState, replaceState) {
   }
 }
 
+function requireTicket(nextState, replaceState) {
+  const ticket = store.getState().ticket.toJS();
+  if (_.isEmpty(ticket)) {
+    replaceState({}, '/ticket');
+  }
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={ history } routes={ routes(requireAuth) } />
+      <Router history={ history } routes={ routes(requireAuth, requireTicket) } />
     </div>
   </Provider>,
   document.getElementById('app'));

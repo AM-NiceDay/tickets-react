@@ -8,7 +8,8 @@ import { formatBusCode } from '../helpers/busCodeHelper';
 class Ticket extends Component {
 
   render() {
-    const { bus, ticket } = this.props;
+    const { ticket } = this.props;
+    const { bus } = ticket;
 
     return (
       <div>
@@ -43,6 +44,5 @@ class Ticket extends Component {
 }
 
 export default connect(state => ({
-  ticket: state.ticket.toJS(),
-  bus: state.bus.toJS()
+  ticket: state.ticket.toJS()
 }))(Ticket);
