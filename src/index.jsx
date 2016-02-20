@@ -10,6 +10,8 @@ import routes from './routes';
 import { setNextPathname } from './actions/user';
 import { init } from './utils/fetch';
 
+import './styles/main.scss';
+
 const store = configureStore();
 syncReduxAndRouter(history, store);
 init(store);

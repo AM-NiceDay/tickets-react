@@ -1,37 +1,29 @@
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
-  entry: [
-    'webpack-dev-server/client?http://localhost:8080',
-    'webpack/hot/only-dev-server',
-    'babel-polyfill',
-    './src/index.jsx'
-  ],
+  devtool: 'eval-source-map',
+  entry: './src/index.jsx',
+  output: {
+    path: './dist',
+    filename: 'bundle.js'
+  },
   module: {
-    loaders: [{
-      test: /\.jsx?$/,
-      exclude: /node_modules/,
-      loader: 'react-hot!babel'
-    }]
+    loaders: [
+      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.scss$/, loader: 'style!css!sass' }
+    ]
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
   },
-  output: {
-    path: __dirname + '/dist',
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
   devServer: {
-    contentBase: './dist',
-    hot: true,
-    historyApiFallback: true
+    contentBase: "./dist",
+    colors: true,
+    historyApiFallback: true,
+    inline: true,
+    hot: true
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.ProvidePlugin({
-      'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
-    })
+    new webpack.HotModuleReplacementPlugin()
   ]
 };
