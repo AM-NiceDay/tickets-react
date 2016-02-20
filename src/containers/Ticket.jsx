@@ -2,11 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import { getLastTicket } from '../actions/ticket';
 import { getFormattedCurrentDate } from '../helpers/dateHelper';
 
 class Ticket extends Component {
 
+  componentDidMount() {
+    const { dispatch, user } = this.props;
+
+    dispatch(getLastTicket(user._id));
+  }
+
   render() {
+    const { ticket } = this.props;
+    const { bus } = ticket;
+
     return (
       <div>
         <div>
@@ -16,7 +26,7 @@ class Ticket extends Component {
         </div>
 
         {
-          _.isEmpty(this.props.ticket) ?
+          _.isEmpty(ticket) ?
           <div>
             <div>
               <p>{getFormattedCurrentDate()}</p>
@@ -35,8 +45,8 @@ class Ticket extends Component {
           <div>
             <div>
               <p>{getFormattedCurrentDate()}</p>
-              <h2>№{this.props.bus.route}</h2>
-              <p>{this.props.bus.routeName}</p>
+              <h2>№{bus.route}</h2>
+              <p>{bus.routeName}</p>
               <p>Благодарим за своевременную оплату</p>
             </div>
             <p>------------------------------------</p>
@@ -54,5 +64,5 @@ class Ticket extends Component {
 
 export default connect(state => ({
   ticket: state.ticket.toJS(),
-  bus: state.bus.toJS()
+  user: state.user.toJS()
 }))(Ticket);

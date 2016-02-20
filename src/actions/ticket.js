@@ -24,8 +24,7 @@ export function buyTicket(userId, busCode) {
     type: BUY_TICKET,
     payload: {
       data: {
-        busCode,
-        dateCreated: new Date()
+        busCode
       },
       promise: post(`/cities/${cityId}/buses/${busId}/tickets`, {
         userId
