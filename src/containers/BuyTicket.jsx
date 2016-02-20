@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import { checkBus, uncheckBus } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
-import CheckMessage from '../components/CheckMessage';
 import { Link } from 'react-router';
 import Form from '../components/Form';
 
