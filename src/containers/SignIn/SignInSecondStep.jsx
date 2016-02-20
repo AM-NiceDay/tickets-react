@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import { getUserInfo, signIn } from '../../actions/user';
+import Form from '../../components/Form';
 
 class SignInSecondStep extends Component {
 
@@ -17,12 +18,9 @@ class SignInSecondStep extends Component {
     dispatch(getUserInfo(user.phoneNumber));
   }
 
-  signInHandler(e) {
-    e.preventDefault();
-
+  signInHandler(password) {
     const { dispatch, user } = this.props;
     const { nextPathname = '/' } = user;
-    const password = this.refs.password.value;
 
     dispatch(signIn(user.phoneNumber, password)).payload.promise
       .then(result => {
@@ -33,12 +31,15 @@ class SignInSecondStep extends Component {
   }
 
   render() {
+    const name = this.props.user.name;
+
     return (
-      <form onSubmit={this.signInHandler} >
-        <p>Здравствуйте, {this.props.user.name}! Теперь введите свой пароль</p>
-        <p><input type="password" ref="password" /></p>
-        <button type="submit">Подтвердить</button>
-      </form>
+      <Form
+        inputLabel={`Здравствуйте, ${name ? name : ''}! Теперь введите свой пароль`}
+        inputType="password"
+        buttonText="Подтвердить"
+        submitHandler={this.signInHandler}
+      />
     );
   }
 }

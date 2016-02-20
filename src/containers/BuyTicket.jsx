@@ -5,6 +5,7 @@ import { checkBus, uncheckBus } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
 import CheckMessage from '../components/CheckMessage';
 import { Link } from 'react-router';
+import Form from '../components/Form';
 
 class BuyTicket extends Component {
 
@@ -15,9 +16,8 @@ class BuyTicket extends Component {
     this.buyTicketHandler = this.buyTicketHandler.bind(this);
   }
 
-  checkBusHandler() {
+  checkBusHandler(busCode) {
     const { dispatch } = this.props;
-    const busCode = this.refs.busCode.value;
 
     if (busCode.length === 4) {
       dispatch(checkBus(busCode));
@@ -26,12 +26,9 @@ class BuyTicket extends Component {
     }
   }
 
-  buyTicketHandler(e) {
-    e.preventDefault();
-
+  buyTicketHandler(busCode) {
     const { dispatch, user } = this.props;
     const { checked, exist } = this.props.bus.toJS();
-    const busCode = this.refs.busCode.value;
 
     if (checked && exist) {
       dispatch(buyTicket(user.get('_id'), busCode)).payload.promise
@@ -52,12 +49,14 @@ class BuyTicket extends Component {
           <Link to="/ticket">{'<-'}</Link>
           <span>Штрих код</span>
         </div>
-        <form onSubmit={this.buyTicketHandler} >
-          <p>Введите четырехзначный код, размещенный в автотранспорте</p>
-          <p><input type="text" ref="busCode" onKeyUp={this.checkBusHandler} /></p>
-          <p>С Вашего счета будет списано 4 650 руб</p>
-          <button type="submit" disabled={!checked || !exist}>Подтвердить</button>
-        </form>
+        <Form
+          inputLabel="Введите четырехзначный код, размещенный в автотранспорте"
+          inputHandler={this.checkBusHandler}
+          infoText="С Вашего счета будет списано 4 650 руб"
+          buttonText="Подтвердить"
+          buttonDisabled={!checked || !exist}
+          submitHandler={this.buyTicketHandler}
+        />
       </div>
     );
   }
