@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-import { getFormatedCurrentDate } from '../helpers/dateHelper';
+import { getFormattedCurrentDate } from '../helpers/dateHelper';
 
 class Ticket extends Component {
 
@@ -19,7 +19,7 @@ class Ticket extends Component {
           _.isEmpty(this.props.ticket) ?
           <div>
             <div>
-              <p>{getFormatedCurrentDate()}</p>
+              <p>{getFormattedCurrentDate()}</p>
               <h2>У вас нет билета</h2>
               <p>Стоимость билета - 4 650 руб</p>
               <p>Для оплаты проезда нажмите "плюсик"</p>
@@ -34,7 +34,7 @@ class Ticket extends Component {
           </div> :
           <div>
             <div>
-              <p>{getFormatedCurrentDate()}</p>
+              <p>{getFormattedCurrentDate()}</p>
               <h2>№{this.props.bus.route}</h2>
               <p>{this.props.bus.routeName}</p>
               <p>Благодарим за своевременную оплату</p>

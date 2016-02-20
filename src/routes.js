@@ -12,6 +12,7 @@ import SignUpThirdStep from './containers/SignUp/SignUpThirdStep';
 import SignUpForthStep from './containers/SignUp/SignUpForthStep';
 import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
+import ShowTicket from './containers/ShowTicket';
 
 export default (requireAuth) => <Route path="/" component={App}>
   <IndexRoute component={Index} onEnter={requireAuth} />
@@ -29,4 +30,5 @@ export default (requireAuth) => <Route path="/" component={App}>
   </Route>
   <Route path="ticket" component={Ticket} />
   <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
+  <Route path="show-ticket" component={ShowTicket} />
 </Route>;
