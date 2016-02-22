@@ -23,7 +23,7 @@ class SignInFirstStep extends Component {
     return (
       <Form
         inputLabel="Введите свою Фамилию"
-        buttonText="->"
+        buttonText="→"
         infoText="Пожалуйста, вводите реальные данные"
         submitHandler={this.nextStepHandler}
       />

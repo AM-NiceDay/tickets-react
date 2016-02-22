@@ -24,7 +24,7 @@ class SignInFirstStep extends Component {
       <Form
         inputLabel="Для начала введите свой мобильный номер"
         inputPrefix="+375"
-        buttonText="->"
+        buttonText="→"
         submitHandler={this.nextStepHandler}
       />
     );

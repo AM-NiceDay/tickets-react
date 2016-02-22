@@ -21,10 +21,18 @@ class Ticket extends Component {
 
     return (
       <div>
-        <div>
-          <Link to="/">=</Link>
-          <span>Билет</span>
-          <Link to="/buy">+</Link>
+        <div className="main">
+          <div className="page-ticket">
+            <div className="page-ticket__header">
+              <div className="link-element page-ticket__link-element">
+                <Link className="link-element page-ticket__link-menu" to="/">—</Link>
+              </div>
+              <span className="page-ticket__logo">Билет</span>
+              <div className="link-element page-ticket__link-element">
+                <Link className="link-element page-ticket__link-buy-ticket" to="/buy">+</Link>
+              </div>
+            </div>
+          </div>
         </div>
 
         {

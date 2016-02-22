@@ -26,9 +26,14 @@ const SignUp = React.createClass({
 
   render() {
     return (
-      <div>
-        <Link to="/signin">Войти</Link>
-        {this.props.children}
+      <div className="main">
+          <div className="page-entry">
+              <div className="page-entry__header">
+                  <Link className="link-element page-entry__link-element" to="/signin">Войти</Link>
+                  <span className="page-logo page-entry__logo"><p>||||||||</p></span>
+              </div>
+              {this.props.children}
+          </div>
       </div>
     );
 

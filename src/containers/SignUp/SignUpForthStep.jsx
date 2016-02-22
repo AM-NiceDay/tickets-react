@@ -29,7 +29,7 @@ class SignInSecondStep extends Component {
       <Form
         inputLabel="Осталось еще чуть-чуть! Введите пароль"
         inputType="password"
-        buttonText="->"
+        buttonText="→"
         submitHandler={this.signUpHandler}
       />
     );

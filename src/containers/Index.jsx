@@ -22,7 +22,7 @@ class Index extends Component {
     const { name, lastName } = this.props.user.toJS();
 
     return (
-      <div>
+      <div className="main">
         <Link to="/signin" onClick={this.logout}>Logout</Link>
         <Link to="/ticket">Ticket</Link>
         <p>{name} {lastName}</p>

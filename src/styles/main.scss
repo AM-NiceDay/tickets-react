@@ -1,0 +1,225 @@
+$primary-color: #39214f;
+$active-button-color: lighten($primary-color,75%);
+
+@mixin roboto-light{
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+}
+@mixin roboto-regular{
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+@mixin flexbox{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+@mixin flex($values) {
+  -webkit-box-flex: $values;
+  -moz-box-flex:  $values;
+  -webkit-flex:  $values;
+  -ms-flex:  $values;
+  flex:  $values;
+}
+@mixin order($values) {
+  -webkit-box-ordinal-group: $values;
+  -moz-box-ordinal-group: $values;
+  -ms-flex-order: $values;
+  -webkit-order: $values;
+  order: $values;
+}
+@mixin flex-direction($values) {
+  -moz-box-direction: $values;
+  -webkit-box-direction: $values;
+    @if $values == "row"{
+      -webkit-box-orient:  horizontal;
+    }
+    @else if $values == "column"{
+      -webkit-box-orient:  vertical;
+    }
+  -webkit-flex-direction: $values;
+  -ms-flexbox-direction: $values;
+  -ms-flex-direction: $values;
+  flex-direction: $values;
+}
+@mixin flex-align-content($values) {
+  -webkit-box-align-content: $values;
+  -webkit-align-content: $values;
+  -ms-flex-align-content: $values;
+  align-content: $values;
+}
+@mixin flex-align-item($values) {
+  -webkit-box-align: $values;
+  -webkit-align-items: $values;
+  -moz-box-align: $values;
+  -ms-flex-align: $values;
+  align-items: $values;
+}
+@mixin flex-justify-content($values){
+  -webkit-justify-content: $values;
+  justify-content: $values;
+}
+@mixin flex-wrap($values) {
+  -moz-box-wrap: $values;
+  -webkit-box-wrap: $values;
+  -webkit-flex-wrap: $values;
+  -ms-flexbox-wrap: $values;
+  -ms-flex-wrap: $values;
+  flex-wrap: $values;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.wrapper{
+  @include flexbox;
+  @include flex-justify-content(center);
+  position: fixed;  //instead vh
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.main{
+  @include flexbox;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-width: 540px;
+  margin:auto;
+  padding: 25px 25px 50px;
+}
+.link-element{
+  text-decoration:none;
+  color: $primary-color;
+}
+
+.page-logo{
+  position:absolute;
+  text-align: center;
+  left:48%;
+}
+
+
+
+/* Page ENTRY */
+.page-entry{
+  @include roboto-light;
+  @include flex-direction(column);
+  @include flex-justify-content(space-between);
+  @include flexbox;
+  width:100%;
+  color: $primary-color;
+}
+.page-entry__form{
+  @include flexbox;
+  @include flex-direction(column);
+  @include flex-align-item(center);
+  @include flex-justify-content(space-around);
+  position: fixed;
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: 80%;
+  max-width:540px;
+  padding: 0 25px ;
+  width:100%;
+}
+.page-entry__description{
+  text-align: center;
+  padding: 0 40px;
+}
+.page-entry__input-prefix{
+  @include flexbox;
+  @include roboto-regular;
+  color: $primary-color;
+  font-size:30px;
+}
+.page-entry__input{
+  @include roboto-regular;
+  color: $primary-color;
+  font-size:30px;
+  padding:0 0 0.5px 5px;
+  outline:none;
+  border: none;
+  border-bottom: 1px solid #c3bcca;
+  width:65%;
+  margin:auto;
+  letter-spacing:1.5px;
+  text-align:center;
+}
+.page-entry__button{
+  @include roboto-light;
+  color: $primary-color;
+  cursor:pointer;
+  padding:10px 0;
+  width:42%;
+  -webkit-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.13);
+  -moz-box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.13);
+  box-shadow: 0px 0px 9px 0px rgba(0,0,0,0.13);
+  background:none;
+  outline:none;
+  border:none;
+  &:active {
+    background: $active-button-color;
+  }
+}
+/* REMAKE REMAKE REMAKE REMAKE REMAKE !!!!!! */
+/* without ticket page*/
+
+.page-ticket{
+  @include roboto-light;
+  @include flex-direction(column);
+  @include flex-justify-content(space-between);
+  @include flexbox;
+  width:100%;
+  color: $primary-color;
+}
+.page-ticket__header{
+  @include flexbox;
+}
+.page-ticket__link-element{
+  flex: 1;
+}
+.page-ticket__logo{
+  flex: 1;
+  text-align:center;
+}
+.page-ticket__link-menu{
+  overflow:hidden;
+  font-size:30px;
+  font-weight:500;
+  position:relative;
+  top:-3px;
+  left:-25px;
+  &:before{
+    content:"—";
+    position:relative;
+    top:-8px;
+    left:23.5px;
+  }
+}
+.page-ticket__link-buy-ticket{
+  font-weight:500;
+  float:right;
+  border:1px solid $primary-color;
+  padding:0 4.5px;
+  border-radius:50%;
+}
+/*
+!* footer *!
+.page-without-ticket__footer{
+  //background: url("../images/layout/footer-bg-repeat-x.png");
+  -webkit-box-shadow: inset 0px 35px 60px -45px rgba(0,0,0,0.4);
+  -moz-box-shadow: inset 0px 35px 60px -45px rgba(0,0,0,0.4);
+  box-shadow: inset 0px 35px 60px -45px rgba(0,0,0,0.4);
+}*/

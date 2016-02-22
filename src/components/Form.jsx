@@ -31,11 +31,11 @@ export default class Form extends Component {
     const { inputLabel, inputPrefix, inputType = 'text', infoText, buttonText, buttonDisabled } = this.props;
 
     return (
-      <form onSubmit={this.submitHandler} >
-        <p>{inputLabel}</p>
-        <p>{inputPrefix}<input type={inputType} ref="value" onKeyUp={this.inputHandler} /></p>
-        { infoText ? <p>{infoText}</p> : null }
-        <button type="submit" disabled={buttonDisabled}>{buttonText}</button>
+      <form className="page-entry__form" onSubmit={this.submitHandler} >
+        <p className="page-entry__description" >{inputLabel}</p>
+        <p className="page-entry__input-prefix">{inputPrefix}<input className="page-entry__input" type={inputType} ref="value" onKeyUp={this.inputHandler} /></p>
+        { infoText ? <p className="page-entry__extra-info">{infoText}</p> : null }
+        <button className="button page-entry__button" type="submit" disabled={buttonDisabled}>{buttonText}</button>
       </form>
     );
   }
