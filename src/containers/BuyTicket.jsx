@@ -43,7 +43,7 @@ class BuyTicket extends Component {
     const { checked, exist } = this.props.bus.toJS();
 
     return (
-      <div>
+      <div className="main">
         <div>
           <Link to="/ticket">{'<-'}</Link>
           <span>Штрих код</span>
