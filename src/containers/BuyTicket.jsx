@@ -44,19 +44,25 @@ class BuyTicket extends Component {
 
     return (
       <div className="main">
-        <div>
-          <Link to="/ticket">{'<-'}</Link>
-          <span>Штрих код</span>
+        <div className="page-entry">
+
+          <div className="page-entry__header">
+            <Link className="link-element page-entry__link-element" to="/ticket">{'←'}</Link>
+            <span className="page-logo page-entry__logo">|||||</span>
+          </div>
+
+          <Form
+            inputLabel="Введите четырехзначный код, размещенный в автотранспорте"
+            inputHandler={this.checkBusHandler}
+            infoText="С Вашего счета будет списано 4 650 руб"
+            buttonText="Подтвердить"
+            buttonDisabled={!checked || !exist}
+            submitHandler={this.buyTicketHandler}
+          />
+
         </div>
-        <Form
-          inputLabel="Введите четырехзначный код, размещенный в автотранспорте"
-          inputHandler={this.checkBusHandler}
-          infoText="С Вашего счета будет списано 4 650 руб"
-          buttonText="Подтвердить"
-          buttonDisabled={!checked || !exist}
-          submitHandler={this.buyTicketHandler}
-        />
       </div>
+
     );
   }
 }
