@@ -35,7 +35,14 @@ export default class Form extends Component {
         <p className="page-entry__description" >{inputLabel}</p>
         <p className="page-entry__input-prefix">{inputPrefix}<input className="page-entry__input" type={inputType} ref="value" onKeyUp={this.inputHandler} /></p>
         { infoText ? <p className="page-entry__extra-info">{infoText}</p> : null }
-        <button className="button" type="submit" disabled={buttonDisabled}>{buttonText}</button>
+        <button
+          className="button"
+          type="submit"
+          disabled={buttonDisabled}
+          style={ buttonDisabled ? { color: 'gray' } : null}
+        >
+          {buttonText}
+        </button>
       </form>
     );
   }

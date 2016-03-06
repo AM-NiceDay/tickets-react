@@ -13,8 +13,9 @@ import SignUpForthStep from './containers/SignUp/SignUpForthStep';
 import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
 import ShowTicket from './containers/ShowTicket';
+import BusChecker from './containers/BusChecker';
 
-export default (requireAuth, requireTicket) => <Route path="/" component={App}>
+export default (requireAuth, requireController, requireTicket) => <Route path="/" component={App}>
   <IndexRoute component={Index} onEnter={requireAuth} />
   <Route path="signin" component={SignIn}>
     <IndexRoute component={SignInFirstStep} />
@@ -31,4 +32,5 @@ export default (requireAuth, requireTicket) => <Route path="/" component={App}>
   <Route path="ticket" component={Ticket} />
   <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
   <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
+  <Route path="check-bus/:busCode" component={BusChecker} onEnter={requireController} />
 </Route>;

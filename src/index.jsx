@@ -24,6 +24,14 @@ function requireAuth(nextState, replaceState) {
   }
 }
 
+function requireController(nextState, replaceState) {
+  const user = store.getState().user;
+  if (!user.get('role') && user.get('role') != 'controller') {
+    store.dispatch(setNextPathname(nextState.location.pathname));
+    replaceState({}, '/signin');
+  }
+}
+
 function requireTicket(nextState, replaceState) {
   const ticket = store.getState().ticket.toJS();
   if (_.isEmpty(ticket)) {
@@ -34,7 +42,7 @@ function requireTicket(nextState, replaceState) {
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={ history } routes={ routes(requireAuth, requireTicket) } />
+      <Router history={ history } routes={ routes(requireAuth, requireController, requireTicket) } />
     </div>
   </Provider>,
   document.getElementById('app'));

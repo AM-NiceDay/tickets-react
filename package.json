@@ -64,6 +64,7 @@
     "redux-promise-middleware": "^2.3.3",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.2",
+    "rx": "^4.0.8",
     "whatwg-fetch": "^0.11.0"
   },
   "devDependencies": {
