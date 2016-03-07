@@ -21,7 +21,7 @@ class Ticket extends Component {
 
         <div>
           <p>Код билета</p>
-          <h2></h2>
+          <h2>{ticket._id}</h2>
           <p>Время оплаты</p>
           <p>{getFormattedTime(new Date(ticket.created))}, {getFormattedDate(new Date(ticket.created))}</p>
           <p>Номер маршрута</p>

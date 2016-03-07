@@ -22,7 +22,7 @@ class Index extends Component {
   }
 
   controlBusHandler(busCode) {
-    this.props.dispatch(pushPath(`/check-bus/${busCode}`));
+    this.props.dispatch(pushPath(`/verify-bus-tickets/${busCode}`));
   }
 
   render() {
