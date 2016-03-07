@@ -1,11 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { pushPath } from 'redux-simple-router';
 import { setPhoneNumber } from '../../actions/user';
 import Form from '../../components/Form';
+import { isPhoneNumber } from '../../utils/validate';
+
+const propTypes = {
+  setPhoneNumber: PropTypes.func,
+  transmitToSecondStep: PropTypes.func,
+};
 
 class SignInFirstStep extends Component {
-
   constructor(props) {
     super(props);
 
@@ -13,10 +19,8 @@ class SignInFirstStep extends Component {
   }
 
   nextStepHandler(phoneNumber) {
-    const { dispatch } = this.props;
-
-    dispatch(setPhoneNumber(Number(phoneNumber)));
-    dispatch(pushPath('/signin/2'));
+    this.props.setPhoneNumber(Number(phoneNumber));
+    this.props.transmitToSecondStep();
   }
 
   render() {
@@ -26,9 +30,15 @@ class SignInFirstStep extends Component {
         inputPrefix="+375"
         buttonText="→"
         submitHandler={this.nextStepHandler}
+        validator={isPhoneNumber}
       />
     );
   }
 }
 
-export default connect()(SignInFirstStep);
+SignInFirstStep.propTypes = propTypes;
+
+export default connect(() => ({}), dispatch => ({
+  setPhoneNumber: bindActionCreators(setPhoneNumber, dispatch),
+  transmitToSecondStep: () => dispatch(pushPath, '/signin/2'),
+}))(SignInFirstStep);
