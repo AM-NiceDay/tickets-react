@@ -5,37 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --watch",
+    "lint": "eslint . --ext .js --ext .jsx",
     "test": "mocha --compilers js:babel-core/register --require ./test/testHelper.js 'test/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-0",
-      "react"
-    ],
-    "env": {
-      "development": {
-        "plugins": [
-          [
-            "react-transform",
-            {
-              "transforms": [
-                {
-                  "transform": "react-transform-hmr",
-                  "imports": [
-                    "react"
-                  ],
-                  "locals": [
-                    "module"
-                  ]
-                }
-              ]
-            }
-          ]
-        ]
-      }
-    }
   },
   "repository": {
     "type": "git",
@@ -78,6 +50,9 @@
     "chai": "^3.4.1",
     "chai-immutable": "^1.5.3",
     "css-loader": "^0.23.1",
+    "eslint": "^2.3.0",
+    "eslint-config-airbnb": "^6.1.0",
+    "eslint-plugin-react": "^4.2.0",
     "jsdom": "^7.1.0",
     "mocha": "^2.3.4",
     "node-sass": "^3.4.2",
