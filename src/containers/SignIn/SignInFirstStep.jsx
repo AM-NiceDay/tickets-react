@@ -40,5 +40,5 @@ SignInFirstStep.propTypes = propTypes;
 
 export default connect(() => ({}), dispatch => ({
   setPhoneNumber: bindActionCreators(setPhoneNumber, dispatch),
-  transmitToSecondStep: () => dispatch(pushPath, '/signin/2'),
+  transmitToSecondStep: () => dispatch(pushPath('/signin/2')),
 }))(SignInFirstStep);

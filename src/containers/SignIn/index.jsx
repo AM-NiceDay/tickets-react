@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 
 const propTypes = {
-  children: PropTypes.component,
+  children: PropTypes.element,
 };
 
 class SignIn extends Component {

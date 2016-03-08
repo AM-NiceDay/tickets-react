@@ -1,17 +1,19 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import promiseMiddleware from 'redux-promise-middleware';
-import localstorageEnhancer from './localstorageEnhancer';
+import fetchMiddleware from '../middlewares/fetchMiddleware';
+import persistState from 'redux-localstorage';
 import reducers from '../reducers/index';
 
 const enhancer = compose(
   applyMiddleware(
     thunk,
+    fetchMiddleware(),
     promiseMiddleware({
-      promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR']
+      promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR'],
     })
   ),
-  localstorageEnhancer,
+  //persistState('user'),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 

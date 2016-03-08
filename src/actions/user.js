@@ -1,4 +1,5 @@
 import { get, post } from '../utils/fetch';
+import { createAction } from 'redux-actions';
 
 export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_NAME = 'SET_NAME';
@@ -9,39 +10,16 @@ export const SIGN_UP = 'SIGN_UP';
 export const LOGOUT = 'LOGOUT';
 export const SET_NEXT_PATHNAME = 'SET_NEXT_PATHNAME';
 
-export function setPhoneNumber(phoneNumber) {
-  return {
-    type: SET_PHONE_NUMBER,
-    payload: {
-      phoneNumber
-    }
-  };
-}
-
-export function setName(name) {
-  return {
-    type: SET_NAME,
-    payload: {
-      name
-    }
-  };
-}
-
-export function setLastName(lastName) {
-  return {
-    type: SET_LAST_NAME,
-    payload: {
-      lastName
-    }
-  };
-}
+export const setPhoneNumber = createAction(SET_PHONE_NUMBER);
+export const setName = createAction(SET_NAME);
+export const setLastName = createAction(SET_LAST_NAME);
 
 export function getUserInfo(phoneNumber) {
   return {
     type: GET_USER_INFO,
     payload: {
-      promise: get(`/users/${phoneNumber}`)
-    }
+      url: `/users/${phoneNumber}`,
+    },
   };
 }
 
