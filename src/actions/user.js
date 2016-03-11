@@ -27,11 +27,13 @@ export function signIn(phoneNumber, password) {
   return {
     type: 'SIGN_IN',
     payload: {
-      promise: post('/authenticate', {
+      url: '/authenticate',
+      method: 'post',
+      body: {
         phoneNumber,
-        password
-      })
-    }
+        password,
+      },
+    },
   };
 }
 

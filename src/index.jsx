@@ -17,16 +17,16 @@ syncReduxAndRouter(history, store);
 init(store);
 
 function requireAuth(nextState, replaceState) {
-  const user = store.getState().user;
-  if (!user.get('loggedIn')) {
+  const user = store.getState().user.index;
+  if (!user.loggedIn) {
     store.dispatch(setNextPathname(nextState.location.pathname));
     replaceState({}, '/signin');
   }
 }
 
 function requireController(nextState, replaceState) {
-  const user = store.getState().user;
-  if (!user.get('role') && user.get('role') != 'controller') {
+  const user = store.getState().user.index;
+  if (!user.role && user.role !== 'controller') {
     store.dispatch(setNextPathname(nextState.location.pathname));
     replaceState({}, '/signin');
   }
@@ -42,7 +42,10 @@ function requireTicket(nextState, replaceState) {
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Router history={ history } routes={ routes(requireAuth, requireController, requireTicket) } />
+      <Router
+        history={ history }
+        routes={ routes(requireAuth, requireController, requireTicket) }
+      />
     </div>
   </Provider>,
   document.getElementById('app'));

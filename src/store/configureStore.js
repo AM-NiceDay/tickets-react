@@ -13,7 +13,7 @@ const enhancer = compose(
       promiseTypeSuffixes: ['LOADING', 'SUCCESS', 'ERROR'],
     })
   ),
-  //persistState('user'),
+  persistState('user'),
   window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 

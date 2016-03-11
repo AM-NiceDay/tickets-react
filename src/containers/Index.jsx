@@ -26,7 +26,7 @@ class Index extends Component {
   }
 
   render() {
-    const { name, lastName, role } = this.props.user.toJS();
+    const { name, lastName, role } = this.props.user;
 
     return (
       <div className="main">
@@ -48,5 +48,5 @@ class Index extends Component {
 }
 
 export default connect(state => ({
-  user: state.user
+  user: state.user.index,
 }))(Index);
