@@ -14,6 +14,13 @@ import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
 import ShowTicket from './containers/ShowTicket';
 import VerifyBusTickets from './containers/VerifyBusTickets';
+import IndexMarkup from './containers/markup/Index.jsx';
+import CommentMarkup from './containers/markup/Comment.jsx';
+import HelpMarkup from './containers/markup/Help.jsx';
+import AboutMarkup from './containers/markup/About.jsx';
+import NewsMarkup from './containers/markup/News.jsx';
+import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
+
 
 export default (requireAuth, requireController, requireTicket) => <Route path="/" component={App}>
   <IndexRoute component={Index} onEnter={requireAuth} />
@@ -22,6 +29,7 @@ export default (requireAuth, requireController, requireTicket) => <Route path="/
     <Route path="1" component={SignInFirstStep} />
     <Route path="2" component={SignInSecondStep} />
   </Route>
+
   <Route path="signup" component={SignUp}>
     <IndexRoute component={SignUpFirstStep} />
     <Route path="1" component={SignUpFirstStep} />
@@ -33,4 +41,13 @@ export default (requireAuth, requireController, requireTicket) => <Route path="/
   <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
   <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
   <Route path="verify-bus-tickets/:busCode" component={VerifyBusTickets} onEnter={requireController} />
+  <Route path="markup">
+    <Route path="Index" component={IndexMarkup} />
+    <Route path="Comment" component={CommentMarkup} />
+    <Route path="Help" component={HelpMarkup} />
+    <Route path="About" component={AboutMarkup} />
+    <Route path="News" component={NewsMarkup} />
+    <Route path="NewsExpanded" component={NewsExpandedMarkup} />
+    <Route path="2" component={SignInSecondStep} />
+  </Route>
 </Route>;

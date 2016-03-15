@@ -25,7 +25,7 @@ class Ticket extends Component {
           <div className="page-ticket">
             <div className="page-ticket__header">
               <div className="link-element page-ticket__link-element">
-                <Link className="link-element page-ticket__link-menu" to="/">—</Link>
+                <Link className="link-element link-menu" to="/">—</Link>
               </div>
               <span className="page-ticket__logo">Билет</span>
               <div className="link-element page-ticket__link-element">

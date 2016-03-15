@@ -9,6 +9,10 @@ $active-button-color: lighten($primary-color,75%);
   font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
+@mixin roboto-ultralight{
+  font-family: "Roboto", sans-serif;
+  font-weight: 100;
+}
 @mixin flexbox{
   display: -webkit-box;
   display: -moz-box;
@@ -70,7 +74,7 @@ $active-button-color: lighten($primary-color,75%);
   flex-wrap: $values;
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:400,300);
+@import url(https://fonts.googleapis.com/css?family=Roboto:500,400,300,100);
 
 *{
   margin: 0;
@@ -78,13 +82,7 @@ $active-button-color: lighten($primary-color,75%);
   box-sizing: border-box;
 }
 .wrapper{
-  @include flexbox;
-  @include flex-justify-content(center);
-  position: fixed;  //instead vh
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+
 }
 .main{
   @include flexbox;
@@ -98,15 +96,31 @@ $active-button-color: lighten($primary-color,75%);
   margin:auto;
   padding: 25px 25px 50px;
 }
+.content-wrapper{
+  padding: 0 25px
+}
 .link-element{
   text-decoration:none;
   color: $primary-color;
 }
+.link-menu{
+  font-size:30px;
+  font-weight:500;
+  position:absolute;
+  top:-3px;
+  left:-25px;
+  &:before{
+    content:"—";
+    position:relative;
+    top:-8px;
+    left:23.5px;
+  }
+}
 
 .page-logo{
-  position:absolute;
   text-align: center;
-  left:48%;
+  font-weight: 400;
+  font-size: 17px;
 }
 .button{
   @include roboto-light;
@@ -128,6 +142,11 @@ $active-button-color: lighten($primary-color,75%);
 }
 
 
+.font_bold{
+  font-weight:400;
+  display:inline-block;
+}
+
 /* Page ENTRY */
 .page-entry{
   @include roboto-light;
@@ -136,6 +155,16 @@ $active-button-color: lighten($primary-color,75%);
   @include flexbox;
   width:100%;
   color: $primary-color;
+  align-self: baseline;
+}
+.page-entry__header{
+  @include flexbox;
+  @include flex-justify-content(center);
+  position:relative;
+}
+.page-entry__link-element{
+  position:absolute;
+  left:0;
 }
 .page-entry__form{
   @include flexbox;
@@ -175,9 +204,19 @@ $active-button-color: lighten($primary-color,75%);
   letter-spacing:1.5px;
   text-align:center;
 }
-
-/* REMAKE REMAKE REMAKE REMAKE REMAKE !!!!!! */
-/* without ticket page*/
+.page-entry__textarea{
+  @include roboto-regular;
+  color: $primary-color;
+  font-size:16px;
+  padding:0 0 0.5px 5px;
+  outline:none;
+  border: none;
+  width:260px;
+  min-height:60px;
+  margin:auto;
+  resize:none;
+  border-bottom: 1px solid #c3bcca;
+}
 
 
 /* Page TICKET */
@@ -198,19 +237,6 @@ $active-button-color: lighten($primary-color,75%);
 .page-ticket__logo{
   flex: 1;
   text-align:center;
-}
-.page-ticket__link-menu{
-  font-size:30px;
-  font-weight:500;
-  position:relative;
-  top:-3px;
-  left:-25px;
-  &:before{
-    content:"—";
-    position:relative;
-    top:-8px;
-    left:23.5px;
-  }
 }
 .page-ticket__link-buy-ticket{
   font-weight:500;
@@ -273,13 +299,202 @@ $active-button-color: lighten($primary-color,75%);
 
 }
 
+/* Page Profile */
+.page-profile{
+  @include flexbox;
+  max-width: 540px;
 
+}
+.profile-block-wrapper{
+  background:$primary-color;
+  min-height:100vh;
+  min-width:310px;
+  @include flexbox;
+  @include flex-direction(column);
+  justify-content: center;
+  width: 90%;
+}
+.profile-block{
+  @include flexbox;
+  @include flex-direction(column);
+  padding:12px 0 12px 37px;
+  justify-content: space-around;
+}
+.user-data__image{
+  border-radius:50%;
+}
+.user-data__username{
+  @include roboto-light;
+  color:white;
+  margin-top:12px;
+  font-size:15px;
+}
+.user-data__phone{
+  @include roboto-ultralight;
+  color:white;
+  margin-top:4px;
+  font-size:13px;
+}
+.user-nav{
+   list-style-type: none;
+   padding-bottom:20px;
+   border-bottom:1px solid #614d72;
+ }
+.user-nav__elem{
+  margin-top:22px;
+}
+.user-nav__elem-link{
+  @include roboto-light;
+  color:white;
+  font-size:16px;
+  text-decoration:none;
+}
+.user-extended-nav{
+  list-style-type: none;
+}
+.user-extended-nav__elem{
+  margin-top:22px;
+}
+.user-extended-nav__elem-link{
+  @include roboto-light;
+  color:white;
+  font-size:16px;
+  text-decoration:none;
+}
+.social-network-block{
+  @include flexbox;
+  @include flex-justify-content(center);
+  margin-top:20px;
+}
+.social-network__elem{
+  text-decoration:none;
+  margin:0 15px;
+  &:first-child{
+    margin-left:0;
+  }
+  &:last-child{
+    margin-right:37.5px;
+  }
+}
 
+/* Feedback Page*/
+.page-feedback__form{
+  @include flexbox;
+  @include flex-direction(column);
+  @include flex-align-item(center);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  height: 80%;
+  max-width:540px;
+  padding: 0 25px ;
+  width:100%;
+}
+.feedback-wrapper{
+  text-align:center;
+}
+.feedback-textarea{
+  margin-top:20px;
+}
+.button_feedback-form{
+  margin:auto;
+}
+.page-feedback__description{
+  font-size:14px;
+  margin-top:5px;
+  padding:0 10px;
+}
 
+/* Page About */
+.page-about {
+  @include roboto-light;
+  @include flex-direction(column);
+  @include flex-justify-content(space-between);
+  @include flexbox;
+  width:100%;
+  color: $primary-color;
+  align-self: baseline;
+  padding: 25px 25px 50px;
+  max-width: 540px;
+  margin:auto;
+}
+.page-about__description{
+  margin-top:20px;
+}
+.about-project-wrapper{
+  margin-top:10px;
+}
 
+/*News */
+.page-news{
+  @include roboto-light;
+  @include flex-direction(column);
+  @include flex-justify-content(space-between);
+  @include flexbox;
+  width:100%;
+  color: $primary-color;
+  align-self: baseline;
+  padding: 25px 25px 50px;
+  max-width: 540px;
+  margin:auto;
+}
+.page-news-expanded{
+  @include roboto-light;
+  @include flex-direction(column);
+  @include flex-justify-content(space-between);
+  @include flexbox;
+  width:100%;
+  color: $primary-color;
+  align-self: baseline;
+  max-width: 540px;
+  margin:auto;
+  padding-bottom:20px;
+}
+.news-wrapper{
+  margin-top:10px;
+  font-size:14.5px;
+}
+.news__heading{
+  font-weight:500;
+  font-size:19px;
+  padding:12.5px 0;
+}
+.news-expanded__header{
+  margin:25px 0 0 25px;
+}
+.news-expanded-wrapper{
+  font-size:14.5px;
+  padding-top:75px;
+}
+.news-expanded__info{
+  font-size:12.5px;
+}
+.news-expanded__heading{
+  font-weight:500;
+  font-size:19px;
+  padding:10px 0 30px;
+}
+.news-expanded__image{
+  width: 114%;
+  position: relative;
+  left: -25px;
+  margin:12px 0;
+}
+.news__quote{
+  margin:15px 0;
+  font-weight:300;
+  padding-left:35px;
+}
 
 
 /* Media Query */
+@media (max-height:335px){
+  .tempSmiles{
+    display:none;
+  }
+}
 @media (max-height:230px){
   .button{
     display:none;
