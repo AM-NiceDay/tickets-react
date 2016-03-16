@@ -20,6 +20,8 @@ import HelpMarkup from './containers/markup/Help.jsx';
 import AboutMarkup from './containers/markup/About.jsx';
 import NewsMarkup from './containers/markup/News.jsx';
 import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
+import IndexControlMarkup from './containers/markup/IndexControl.jsx';
+import TempPageNotForUseMarkup from './containers/markup/TempPageNotForUse.jsx';
 
 
 export default (requireAuth, requireController, requireTicket) => <Route path="/" component={App}>
@@ -48,6 +50,8 @@ export default (requireAuth, requireController, requireTicket) => <Route path="/
     <Route path="About" component={AboutMarkup} />
     <Route path="News" component={NewsMarkup} />
     <Route path="NewsExpanded" component={NewsExpandedMarkup} />
+    <Route path="IndexControl" component={IndexControlMarkup} />
+    <Route path="TempPageNotForUse" component={TempPageNotForUseMarkup} />
     <Route path="2" component={SignInSecondStep} />
   </Route>
 </Route>;
