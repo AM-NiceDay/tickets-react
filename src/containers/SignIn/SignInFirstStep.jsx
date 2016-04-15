@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 import { setPhoneNumber } from '../../actions/user';
 import Form from '../../components/Form';
 import { isPhoneNumber } from '../../utils/validate';
@@ -40,5 +40,5 @@ SignInFirstStep.propTypes = propTypes;
 
 export default connect(() => ({}), dispatch => ({
   setPhoneNumber: bindActionCreators(setPhoneNumber, dispatch),
-  transmitToSecondStep: () => dispatch(pushPath('/signin/2')),
+  transmitToSecondStep: () => dispatch(push('/signin/2')),
 }))(SignInFirstStep);

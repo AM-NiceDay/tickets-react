@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'redux-simple-router';
+import { routerReducer as routing } from 'react-router-redux';
 import user from './user';
 import draft from './user/draft';
 import bus from './bus';
@@ -16,5 +16,5 @@ export default combineReducers({
   ticket,
   busTickets,
   verifiableTicket,
-  routing: routeReducer,
+  routing,
 });

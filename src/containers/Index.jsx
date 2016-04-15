@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { pushPath } from 'redux-simple-router';
+import { push } from 'react-router-redux';
 import { logout } from '../actions/user';
 import { getLastTicket } from '../actions/ticket';
 import Form from '../components/Form';
@@ -22,7 +22,7 @@ class Index extends Component {
   }
 
   controlBusHandler(busCode) {
-    this.props.dispatch(pushPath(`/verify-bus-tickets/${busCode}`));
+    this.props.dispatch(push(`/verify-bus-tickets/${busCode}`));
   }
 
   render() {
