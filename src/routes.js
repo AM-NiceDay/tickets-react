@@ -4,8 +4,8 @@ import App from './containers/App';
 import Index from './containers/Index';
 import SignIn from './containers/SignIn';
 import SignInFirstStep from './containers/SignIn/FirstStep';
+import SignInSecondStep from './containers/SignIn/SecondStep';
 /*
-import SignInSecondStep from './containers/SignIn/SignInSecondStep';
 import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
 import SignUpSecondStep from './containers/SignUp/SignUpSecondStep';
@@ -31,6 +31,8 @@ export default function getRoutes({ requireAuth/* , requireController, requireTi
 
       <Route path="signin" component={SignIn}>
         <IndexRoute component={SignInFirstStep} />
+        <Route path="1" component={SignInFirstStep} />
+        <Route path="2" component={SignInSecondStep} />
       </Route>
     </Route>
   );
@@ -39,8 +41,6 @@ export default function getRoutes({ requireAuth/* , requireController, requireTi
 /*
 <Route path="signin" component={SignIn}>
   <IndexRoute component={SignInFirstStep} />
-  <Route path="1" component={SignInFirstStep} />
-  <Route path="2" component={SignInSecondStep} />
 </Route>
 
 <Route path="signup" component={SignUp}>

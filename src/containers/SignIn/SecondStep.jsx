@@ -1,8 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { pushPath } from 'redux-simple-router';
-import { getUserInfo, signIn } from '../../actions/user';
+import { push } from 'react-router-redux';
+import { setPassword, cleanDraft, getUserInfo, signIn } from '../../actions/user';
 import Form from '../../components/Form';
 import Spinner from '../../components/Spinner';
 
@@ -12,7 +12,8 @@ const propTypes = {
     loading: PropTypes.bool,
   }),
   draft: PropTypes.shape({
-    phoneNumber: PropTypes.number,
+    phoneNumber: PropTypes.string,
+    password: PropTypes.string,
   }),
   actions: PropTypes.shape({
     getUserInfo: PropTypes.func,
@@ -21,7 +22,7 @@ const propTypes = {
   }),
 };
 
-class SignInSecondStep extends Component {
+export class SecondStep extends Component {
   constructor(props) {
     super(props);
 
@@ -34,39 +35,47 @@ class SignInSecondStep extends Component {
     actions.getUserInfo(draft.phoneNumber);
   }
 
-  signInHandler(password) {
-    const { actions, user } = this.props;
+  signInHandler() {
+    const { actions, user, draft } = this.props;
     const { nextPathname = '/' } = user;
 
-    actions.signIn(user.phoneNumber, password)
+    actions.signIn(draft.phoneNumber, draft.password)
       .then(() => {
-        actions.pushPath(nextPathname);
+        actions.cleanDraft();
+      })
+      .then(() => {
+        actions.push(nextPathname);
       });
   }
 
   render() {
-    const { name, loading } = this.props.user;
+    const { draft, user, actions } = this.props;
 
-    return loading ?
+    return user.loading ?
       <Spinner /> :
       <Form
-        inputLabel={`Здравствуйте, ${name}! Теперь введите свой пароль`}
+        inputLabel={`Здравствуйте, ${user.name}! Теперь введите свой пароль`}
         inputType="password"
         buttonText="Подтвердить"
-        submitHandler={this.signInHandler}
+        value={draft.password}
+        onChange={actions.setPassword}
+        onSubmit={this.signInHandler}
+        isValid={true}
       />;
   }
 }
 
-SignInSecondStep.propTypes = propTypes;
+SecondStep.propTypes = propTypes;
 
 export default connect(state => ({
   user: state.user.index,
   draft: state.user.draft,
 }), dispatch => ({
   actions: bindActionCreators({
+    setPassword,
+    cleanDraft,
     getUserInfo,
     signIn,
-    pushPath,
+    push,
   }, dispatch),
-}))(SignInSecondStep);
+}))(SecondStep);

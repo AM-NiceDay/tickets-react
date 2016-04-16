@@ -4,16 +4,21 @@ import { createAction } from 'redux-actions';
 export const SET_PHONE_NUMBER = 'SET_PHONE_NUMBER';
 export const SET_NAME = 'SET_NAME';
 export const SET_LAST_NAME = 'SET_LAST_NAME';
+export const SET_PASSWORD = 'SET_PASSWORD';
+export const CLEAN_DRAFT = 'CLEAN_DRAFT';
+export const SET_NEXT_PATHNAME = 'SET_NEXT_PATHNAME';
 export const GET_USER_INFO = 'GET_USER_INFO';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_UP = 'SIGN_UP';
 export const LOGOUT = 'LOGOUT';
-export const SET_NEXT_PATHNAME = 'SET_NEXT_PATHNAME';
 
 export const setPhoneNumber = createAction(SET_PHONE_NUMBER);
 export const setName = createAction(SET_NAME);
 export const setLastName = createAction(SET_LAST_NAME);
+export const setPassword = createAction(SET_PASSWORD);
+export const cleanDraft = createAction(CLEAN_DRAFT);
 export const setNextPathname = createAction(SET_NEXT_PATHNAME);
+
 
 export function getUserInfo(phoneNumber) {
   return {
