@@ -13,6 +13,7 @@ export const SET_NEXT_PATHNAME = 'SET_NEXT_PATHNAME';
 export const setPhoneNumber = createAction(SET_PHONE_NUMBER);
 export const setName = createAction(SET_NAME);
 export const setLastName = createAction(SET_LAST_NAME);
+export const setNextPathname = createAction(SET_NEXT_PATHNAME);
 
 export function getUserInfo(phoneNumber) {
   return {
@@ -42,26 +43,17 @@ export function signUp(phoneNumber, name, lastName, password) {
     type: 'SIGN_UP',
     payload: {
       promise: post('/users', {
-        name: name,
-        phoneNumber: phoneNumber,
-        lastName: lastName,
-        password: password
-      })
-    }
+        name,
+        phoneNumber,
+        lastName,
+        password,
+      }),
+    },
   };
 }
 
 export function logout() {
   return {
-    type: LOGOUT
-  }
-}
-
-export function setNextPathname(nextPathname) {
-  return {
-    type: SET_NEXT_PATHNAME,
-    payload: {
-      nextPathname
-    }
+    type: LOGOUT,
   };
 }

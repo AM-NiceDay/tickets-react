@@ -1,13 +1,7 @@
 import { expect } from 'chai';
-import validate, { isEmail, isName, isPhoneNumber } from '../../src/utils/validate';
+import { isEmail, isName, isPhoneNumber } from '../../src/utils/validate';
 
 describe('validate utils', () => {
-  describe('#validate()', () => {
-    it('validates value with passed validator', () => {
-      expect(validate('test@example.com', isEmail)).to.equal(true);
-    });
-  });
-
   describe('#isEmail()', () => {
     it('returns true if passed parameter is email', () => {
       expect(isEmail('test@example.com')).to.equal(true);

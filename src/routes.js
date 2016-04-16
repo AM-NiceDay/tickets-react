@@ -3,7 +3,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from './containers/App';
 import Index from './containers/Index';
 import SignIn from './containers/SignIn';
-import SignInFirstStep from './containers/SignIn/SignInFirstStep';
+import SignInFirstStep from './containers/SignIn/FirstStep';
 /*
 import SignInSecondStep from './containers/SignIn/SignInSecondStep';
 import SignUp from './containers/SignUp';

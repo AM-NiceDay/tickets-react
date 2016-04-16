@@ -7,7 +7,7 @@
     "start": "webpack-dev-server --watch",
     "lint": "eslint . --ext .js --ext .jsx",
     "test": "mocha --compilers js:babel-core/register --require ./test/setup.js 'test/**/*.@(js|jsx)'",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch --watch-extensions js,jsx"
   },
   "repository": {
     "type": "git",
@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/mr-deer/tickets-react#readme",
   "dependencies": {
+    "classnames": "^2.2.3",
     "isomorphic-fetch": "^2.2.1",
+    "jsdom": "^8.4.0",
     "lodash": "^4.11.1",
     "ramda": "^0.21.0",
     "react": "^15.0.1",
@@ -68,6 +70,8 @@
     "redux-devtools-inspector": "^0.3.4",
     "redux-devtools-log-monitor": "^1.0.10",
     "sass-loader": "^3.1.2",
+    "sinon": "^1.17.3",
+    "sinon-chai": "^2.8.0",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.13",
     "webpack-dev-server": "^1.12.1"

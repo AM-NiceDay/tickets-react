@@ -136,11 +136,13 @@ $active-button-color: lighten($primary-color,75%);
   background:none;
   outline:none;
   border:none;
+  &.disabled {
+    background-color: #EEEEEE;
+  }
   &:active {
     background: $active-button-color;
   }
 }
-
 
 .font_bold{
   font-weight:400;
