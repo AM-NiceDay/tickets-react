@@ -8,12 +8,20 @@ import { showSideBar } from '../actions/sideBar';
 import { getFormattedCurrentDate } from '../helpers/dateHelper';
 import TicketExists from '../components/Ticket/Exists';
 import TicketNotExists from '../components/Ticket/NotExists';
+import Spinner from '../components/Spinner';
 
 const propTypes = {
-  user: PropTypes.shape({
-    _id: PropTypes.number,
+  lastTicket: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
   }),
   ticket: PropTypes.object,
+  bus: PropTypes.shape({
+    route: PropTypes.number,
+    routeName: PropTypes.string,
+  }),
+  user: PropTypes.shape({
+    _id: PropTypes.string,
+  }),
   actions: PropTypes.shape({
     getLastTicket: PropTypes.func,
     showSideBar: PropTypes.func,
@@ -28,44 +36,53 @@ class Ticket extends Component {
   }
 
   render() {
-    const { ticket, actions } = this.props;
-    const { bus } = ticket;
+    const { lastTicket, ticket, bus, actions } = this.props;
 
-    return (
-      <div>
-        <div className="main">
-          <div className="page-ticket">
-            <div className="page-ticket__header">
-              <div className="link-element page-ticket__link-element">
-                <a className="link-element link-menu" onClick={actions.showSideBar}>—</a>
-              </div>
-              <span className="page-ticket__logo">Билет</span>
-              <div className="link-element page-ticket__link-element">
-                <Link className="link-element page-ticket__link-buy-ticket" to="/buy">+</Link>
+    return lastTicket.isLoading ?
+      <Spinner /> :
+      (
+        <div>
+          <div className="main">
+            <div className="page-ticket">
+              <div className="page-ticket__header">
+                <div className="link-element page-ticket__link-element">
+                  <a className="link-element link-menu" onClick={actions.showSideBar}>—</a>
+                </div>
+                <span className="page-ticket__logo">Билет</span>
+                <div className="link-element page-ticket__link-element">
+                  <Link className="link-element page-ticket__link-buy-ticket" to="/buy">+</Link>
+                </div>
               </div>
             </div>
           </div>
+          {
+            _.isEmpty(ticket) ?
+              <TicketNotExists formattedDate={getFormattedCurrentDate()} /> :
+              <TicketExists
+                formattedDate={getFormattedCurrentDate()}
+                route={bus.route}
+                routeName={bus.routeName}
+              />
+          }
         </div>
-        {
-          _.isEmpty(ticket) ?
-            <TicketNotExists formattedDate={getFormattedCurrentDate()} /> :
-            <TicketExists
-              formattedDate={getFormattedCurrentDate()}
-              route={bus.route}
-              routeName={bus.routeName}
-            />
-        }
-      </div>
-    );
+      );
   }
 }
 
 Ticket.propTypes = propTypes;
 
-export default connect(state => ({
-  ticket: state.ticket,
-  user: state.user.index,
-}), dispatch => ({
+export default connect(state => {
+  const lastTicket = state.lastTicket;
+  const ticket = lastTicket.id ? state.tickets[lastTicket.id] : null;
+  const bus = ticket ? state.buses[ticket.bus] : null;
+
+  return {
+    lastTicket,
+    ticket,
+    bus,
+    user: state.user.index,
+  };
+}, dispatch => ({
   actions: bindActionCreators({
     getLastTicket,
     showSideBar,
