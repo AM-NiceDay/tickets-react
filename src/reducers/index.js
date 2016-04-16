@@ -5,6 +5,7 @@ import draft from './user/draft';
 import bus from './bus';
 import ticket from './ticket';
 import busTickets from './busTickets';
+import sideBar from './sideBar';
 import verifiableTicket from './verifiableTicket';
 
 export default combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   ticket,
   busTickets,
   verifiableTicket,
+  sideBar,
   routing,
 });

@@ -16,16 +16,12 @@ export function getLastTicket(userId) {
   return {
     type: GET_TICKET,
     payload: {
-      promise: get(`/users/${userId}/tickets?limit=1`)
-        .then(tickets => {
-          return tickets[0];
-        })
-    }
-  }
+      url: `/users/${userId}/tickets?limit=1`,
+    },
+  };
 }
 
 export function buyTicket(userId, busCode) {
-
   const cityId = Number(String(busCode)[0]);
   const busId = Number(String(busCode).slice(1));
 

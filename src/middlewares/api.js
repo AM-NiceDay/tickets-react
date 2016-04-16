@@ -20,12 +20,12 @@ export default function () {
       },
     } = action;
 
-    const authToken = getState().user.token;
+    const authToken = getState().user.index.token;
 
     setTimeout(() => next({
       type: `${type}_${LOADING}`,
       ...!!data ? { payload: data } : {},
-    }))
+    }));
 
     return fetch(`http://localhost:3000${url}`, {
       method,
