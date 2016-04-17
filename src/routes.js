@@ -10,6 +10,7 @@ import BuyTicket from './containers/BuyTicket';
 import ShowTicket from './containers/ShowTicket';
 import Verify from './containers/Verify';
 import VerifyBusTickets from './containers/VerifyBusTickets';
+import About from './containers/About';
 /*
 import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
@@ -48,6 +49,8 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
         component={VerifyBusTickets}
         onEnter={combineRequires(requireController, requireBus)}
       />
+
+      <Route path="about" component={About} />
 
       <Route path="markup">
         <Route path="Index" component={IndexMarkup} />
