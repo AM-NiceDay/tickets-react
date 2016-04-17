@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import cs from 'classnames';
+import withValue from '../utils/withValue';
 
 const propTypes = {
   inputLabel: PropTypes.string.isRequired,
@@ -12,10 +13,6 @@ const propTypes = {
   onSubmit: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
 };
-
-function withValue(fn) {
-  return e => fn(e.target.value);
-}
 
 function Form({
   inputLabel,

@@ -4,6 +4,7 @@ import user from './user';
 import draft from './user/draft';
 import ticket from './ticket';
 import bus from './bus';
+import question from './question';
 import tickets from './tickets';
 import buses from './buses';
 import busTickets from './busTickets';
@@ -17,6 +18,7 @@ export default combineReducers({
   }),
   ticket,
   bus,
+  question,
   tickets,
   buses,
   busTickets,
