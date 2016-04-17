@@ -1,5 +1,5 @@
 import { setNextPathname } from '../actions/user';
-import R from 'ramda';
+import _ from 'lodash';
 
 export default function (store) {
   return {
@@ -18,8 +18,9 @@ export default function (store) {
       }
     },
     requireTicket: (nextState, replaceState) => {
-      const ticket = store.getState().ticket.toJS();
-      if (R.isEmpty(ticket)) {
+      const lastTicket = store.getState().lastTicket;
+
+      if (!lastTicket.id) {
         replaceState({}, '/ticket');
       }
     },

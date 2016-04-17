@@ -6,13 +6,13 @@ import SignInFirstStep from './containers/SignIn/FirstStep';
 import SignInSecondStep from './containers/SignIn/SecondStep';
 import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
+import ShowTicket from './containers/ShowTicket';
 /*
 import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
 import SignUpSecondStep from './containers/SignUp/SignUpSecondStep';
 import SignUpThirdStep from './containers/SignUp/SignUpThirdStep';
 import SignUpForthStep from './containers/SignUp/SignUpForthStep';
-import ShowTicket from './containers/ShowTicket';
 import VerifyBusTickets from './containers/VerifyBusTickets';
 import IndexMarkup from './containers/markup/Index.jsx';
 import CommentMarkup from './containers/markup/Comment.jsx';
@@ -23,7 +23,7 @@ import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
 import IndexControlMarkup from './containers/markup/IndexControl.jsx';
 import TempPageNotForUseMarkup from './containers/markup/TempPageNotForUse.jsx';*/
 
-export default function getRoutes({ requireAuth/* , requireController, requireTicket */ }) { // eslint-disable-line react/prop-types
+export default function getRoutes({ requireAuth, requireController, requireTicket }) { // eslint-disable-line react/prop-types
   return (
     <Route path="/" component={App}>
       <IndexRedirect to="/ticket" />
@@ -35,6 +35,7 @@ export default function getRoutes({ requireAuth/* , requireController, requireTi
       </Route>
 
       <Route path="ticket" component={Ticket} onEnter={requireAuth} />
+      <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
       <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
     </Route>
   );
