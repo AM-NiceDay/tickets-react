@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, IndexRoute, IndexRedirect } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import App from './containers/App';
 import SignIn from './containers/SignIn';
 import SignInFirstStep from './containers/SignIn/FirstStep';
@@ -7,6 +7,7 @@ import SignInSecondStep from './containers/SignIn/SecondStep';
 import Ticket from './containers/Ticket';
 import BuyTicket from './containers/BuyTicket';
 import ShowTicket from './containers/ShowTicket';
+import Verify from './containers/Verify';
 /*
 import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
@@ -23,10 +24,10 @@ import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
 import IndexControlMarkup from './containers/markup/IndexControl.jsx';
 import TempPageNotForUseMarkup from './containers/markup/TempPageNotForUse.jsx';*/
 
-export default function getRoutes({ requireAuth, requireController, requireTicket }) { // eslint-disable-line react/prop-types
+export default function getRoutes({ requireAuth, requireController, requireTicket, redirectBasedOnUserType }) { // eslint-disable-line
   return (
     <Route path="/" component={App}>
-      <IndexRedirect to="/ticket" />
+      <IndexRoute onEnter={redirectBasedOnUserType} />
 
       <Route path="signin" component={SignIn}>
         <IndexRoute component={SignInFirstStep} />
@@ -37,6 +38,8 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
       <Route path="ticket" component={Ticket} onEnter={requireAuth} />
       <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
       <Route path="buy" component={BuyTicket} onEnter={requireAuth} />
+
+      <Route path="verify" component={Verify} onEnter={requireController} />
     </Route>
   );
 }
@@ -50,12 +53,10 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
   <Route path="3" component={SignUpThirdStep} />
   <Route path="4" component={SignUpForthStep} />
   </Route>
-  <Route path="ticket" component={Ticket} />
-  <Route path="show-ticket" component={ShowTicket} onEnter={requireTicket} />
   <Route
-path="verify-bus-tickets/:busCode"
-component={VerifyBusTickets}
-onEnter={requireController}
+    path="verify-bus-tickets/:busCode"
+    component={VerifyBusTickets}
+    onEnter={requireController}
   />
   <Route path="markup">
   <Route path="Index" component={IndexMarkup} />

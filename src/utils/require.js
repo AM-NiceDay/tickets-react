@@ -24,5 +24,15 @@ export default function (store) {
         replaceState({}, '/ticket');
       }
     },
+    redirectBasedOnUserType: (nextState, replaceState) => {
+      console.log('here');
+      const user = store.getState().user.index;
+      if (user.role && user.role === 'controller') {
+        store.dispatch(setNextPathname(nextState.location.pathname));
+        replaceState({}, '/verify');
+      } else {
+        replaceState({}, '/ticket');
+      }
+    },
   };
 }
