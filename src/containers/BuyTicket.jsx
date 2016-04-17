@@ -44,7 +44,7 @@ class BuyTicket extends Component {
   }
 
   buyTicketHandler() {
-    const { user, bus: { id, code, isChecked }, actions } = this.props;
+    const { user, bus: { id, code, isChecked}, actions } = this.props;
 
     if (id && isChecked) {
       actions.buyTicket(user.index._id, code)

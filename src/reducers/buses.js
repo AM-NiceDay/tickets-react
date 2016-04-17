@@ -1,23 +1,36 @@
 import { GET_TICKET, BUY_TICKET } from '../actions/ticket';
 import { CHECK_BUS } from '../actions/bus';
+import { formatBusCode } from '../helpers/busCodeHelper';
 
 export default function (state = {}, action) {
   switch (action.type) {
-    case `${GET_TICKET}_SUCCESS`:
+    case `${GET_TICKET}_SUCCESS`: {
+      const bus = action.payload[0].bus;
+      const busCode = formatBusCode(bus.cityId, bus._id);
+
       return {
         ...state,
-        [action.payload[0].bus._id]: action.payload[0].bus,
+        [busCode]: bus,
       };
-    case `${CHECK_BUS}_SUCCESS`:
+    }
+    case `${CHECK_BUS}_SUCCESS`: {
+      const bus = action.payload;
+      const busCode = formatBusCode(bus.cityId, bus._id);
+
       return {
         ...state,
-        [action.payload._id]: action.payload,
+        [busCode]: bus,
       };
-    case `${BUY_TICKET}_SUCCESS`:
+    }
+    case `${BUY_TICKET}_SUCCESS`: {
+      const bus = action.payload;
+      const busCode = formatBusCode(bus.cityId, bus._id);
+
       return {
         ...state,
-        [action.payload.bus._id]: action.payload.bus,
+        [busCode]: bus,
       };
+    }
     default:
       return state;
   }

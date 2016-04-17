@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import { showSideBar } from '../actions/sideBar';
-import { checkBus, uncheckBus, setBusCode } from '../actions/bus';
+import { checkBus, uncheckBus, setBusCode, resetBus } from '../actions/bus';
 import Form from '../components/Form';
 
 const propTypes = {
@@ -16,6 +16,7 @@ const propTypes = {
     checkBus: PropTypes.func,
     uncheckBus: PropTypes.func,
     setBusCode: PropTypes.func,
+    resetBus: PropTypes.func,
     push: PropTypes.func,
   }),
 };
@@ -26,6 +27,8 @@ class Verify extends Component {
 
     this.checkBusHandler = this.checkBusHandler.bind(this);
     this.verifyBusHandler = this.verifyBusHandler.bind(this);
+
+    this.props.actions.resetBus();
   }
 
   checkBusHandler(busCode) {
@@ -47,7 +50,7 @@ class Verify extends Component {
   }
 
   render() {
-    const { bus: { id, code, isChecked }, actions} = this.props;
+    const { bus: { id, code, isChecked }, actions } = this.props;
 
     return (
       <div className="main">
@@ -83,6 +86,7 @@ export default connect(state => ({
     uncheckBus,
     setBusCode,
     showSideBar,
+    resetBus,
     push,
   }, dispatch),
 }))(Verify);

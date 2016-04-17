@@ -1,4 +1,10 @@
-import { GET_TICKET, BUY_TICKET } from '../actions/ticket';
+import {
+  GET_TICKET,
+  BUY_TICKET,
+  SET_TICKET_ID,
+  SET_IS_CHECKED,
+  RESET_TICKET
+} from '../actions/ticket';
 
 const initialState = {
   isLoading: false,
@@ -29,6 +35,18 @@ export default function (state = initialState, action) {
         id: action.payload._id,
         isLoading: false,
       };
+    case SET_TICKET_ID:
+      return {
+        ...state,
+        id: action.payload,
+      };
+    case SET_IS_CHECKED:
+      return {
+        ...state,
+        isChecked: true,
+      };
+    case RESET_TICKET:
+      return initialState;
     default:
       return state;
   }

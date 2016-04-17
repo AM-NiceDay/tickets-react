@@ -1,6 +1,13 @@
 import { setNextPathname } from '../actions/user';
 import _ from 'lodash';
 
+export function combineRequires(require1, require2) {
+  return (nextState, replaceState) => {
+    require1(nextState, replaceState);
+    require2(nextState, replaceState);
+  };
+}
+
 export default function (store) {
   return {
     requireAuth: (nextState, replaceState) => {
@@ -22,6 +29,13 @@ export default function (store) {
 
       if (!ticket.id) {
         replaceState({}, '/ticket');
+      }
+    },
+    requireBus: (nextState, replaceState) => {
+      const bus = store.getState().bus;
+
+      if (bus.code.length !== 4) {
+        replaceState({}, '/verify');
       }
     },
     redirectBasedOnUserType: (nextState, replaceState) => {

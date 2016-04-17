@@ -1,4 +1,5 @@
-import { CHECK_BUS, UNCHECK_BUS, SET_BUS_CODE } from '../actions/bus';
+import { CHECK_BUS, UNCHECK_BUS, SET_BUS_CODE, RESET_BUS } from '../actions/bus';
+import { BUY_TICKET } from '../actions/ticket';
 
 const initialState = {
   code: '',
@@ -22,7 +23,7 @@ export default function (state = initialState, action) {
     case `${CHECK_BUS}_ERROR`:
       return {
         ...state,
-        id: indefined,
+        id: undefined,
         isChecked: true,
       };
     case UNCHECK_BUS:
@@ -30,12 +31,15 @@ export default function (state = initialState, action) {
         ...state,
         isChecked: false,
       };
-    case SET_BUS_CODE: {
+    case SET_BUS_CODE:
       return {
         ...state,
         code: action.payload,
       };
-    }
+    case `${BUY_TICKET}_SUCCESS`:
+      return initialState;
+    case RESET_BUS:
+      return initialState;
     default:
       return state;
   }
