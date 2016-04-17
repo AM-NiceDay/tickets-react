@@ -16,6 +16,7 @@ import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
 import SignUpSecondStep from './containers/SignUp/SignUpSecondStep';
 import SignUpThirdStep from './containers/SignUp/SignUpThirdStep';
 import SignUpForthStep from './containers/SignUp/SignUpForthStep';
+*/
 
 import IndexMarkup from './containers/markup/Index.jsx';
 import CommentMarkup from './containers/markup/Comment.jsx';
@@ -25,7 +26,6 @@ import NewsMarkup from './containers/markup/News.jsx';
 import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
 import IndexControlMarkup from './containers/markup/IndexControl.jsx';
 import TempPageNotForUseMarkup from './containers/markup/TempPageNotForUse.jsx';
-*/
 
 export default function getRoutes({ requireAuth, requireController, requireTicket, requireBus, redirectBasedOnUserType }) { // eslint-disable-line
   return (
@@ -48,6 +48,17 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
         component={VerifyBusTickets}
         onEnter={combineRequires(requireController, requireBus)}
       />
+
+      <Route path="markup">
+        <Route path="Index" component={IndexMarkup} />
+        <Route path="Comment" component={CommentMarkup} />
+        <Route path="Help" component={HelpMarkup} />
+        <Route path="About" component={AboutMarkup} />
+        <Route path="News" component={NewsMarkup} />
+        <Route path="NewsExpanded" component={NewsExpandedMarkup} />
+        <Route path="IndexControl" component={IndexControlMarkup} />
+        <Route path="TempPageNotForUse" component={TempPageNotForUseMarkup} />
+      </Route>
     </Route>
   );
 }
@@ -62,15 +73,5 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
     <Route path="4" component={SignUpForthStep} />
   </Route>
 
-  <Route path="markup">
-    <Route path="Index" component={IndexMarkup} />
-    <Route path="Comment" component={CommentMarkup} />
-    <Route path="Help" component={HelpMarkup} />
-    <Route path="About" component={AboutMarkup} />
-    <Route path="News" component={NewsMarkup} />
-    <Route path="NewsExpanded" component={NewsExpandedMarkup} />
-    <Route path="IndexControl" component={IndexControlMarkup} />
-    <Route path="TempPageNotForUse" component={TempPageNotForUseMarkup} />
-    <Route path="2" component={SignInSecondStep} />
-  </Route>
+
 */
