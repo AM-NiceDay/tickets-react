@@ -3,6 +3,7 @@ import { routerReducer as routing } from 'react-router-redux';
 import user from './user';
 import draft from './user/draft';
 import lastTicket from './lastTicket';
+import bus from './bus';
 import tickets from './tickets';
 import buses from './buses';
 import busTickets from './busTickets';
@@ -15,6 +16,7 @@ export default combineReducers({
     draft,
   }),
   lastTicket,
+  bus,
   tickets,
   buses,
   busTickets,

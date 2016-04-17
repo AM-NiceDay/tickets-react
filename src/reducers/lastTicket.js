@@ -1,4 +1,4 @@
-import { GET_TICKET } from '../actions/ticket';
+import { GET_TICKET, BUY_TICKET } from '../actions/ticket';
 
 const initialState = {
   isLoading: false,
@@ -21,6 +21,12 @@ export default function (state = initialState, action) {
       return {
         ...state,
         id: undefined,
+        isLoading: false,
+      };
+    case `${BUY_TICKET}_SUCCESS`:
+      return {
+        ...state,
+        id: action.payload._id,
         isLoading: false,
       };
     default:

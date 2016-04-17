@@ -1,13 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { pushPath } from 'redux-simple-router';
-import { checkBus, uncheckBus } from '../actions/bus';
+import { push } from 'react-router-redux';
+import { checkBus, uncheckBus, setBusCode } from '../actions/bus';
 import { buyTicket } from '../actions/ticket';
 import { Link } from 'react-router';
 import Form from '../components/Form';
 
-class BuyTicket extends Component {
+const propTypes = {
+  bus: PropTypes.shape({
+    id: PropTypes.number,
+    code: PropTypes.string,
+    isChecked: PropTypes.bool,
+  }),
+  user: PropTypes.shape({
+    _id: PropTypes.string,
+  }),
+  actions: PropTypes.shape({
+    checkBus: PropTypes.func,
+    uncheckBus: PropTypes.func,
+    setBusCode: PropTypes.func,
+  }),
+};
 
+class BuyTicket extends Component {
   constructor(props) {
     super(props);
 
@@ -16,31 +32,30 @@ class BuyTicket extends Component {
   }
 
   checkBusHandler(busCode) {
-    const { dispatch } = this.props;
+    const { actions } = this.props;
+
+    actions.setBusCode(busCode);
 
     if (busCode.length === 4) {
-      dispatch(checkBus(busCode));
+      actions.checkBus(busCode);
     } else {
-      dispatch(uncheckBus());
+      actions.uncheckBus();
     }
   }
 
-  buyTicketHandler(busCode) {
-    const { dispatch, user } = this.props;
-    const { checked, exist } = this.props.bus.toJS();
+  buyTicketHandler() {
+    const { user, bus: { id, code, isChecked }, actions } = this.props;
 
-    if (checked && exist) {
-      dispatch(buyTicket(user.get('_id'), busCode)).payload.promise
-        .then(result => {
-          if (!result.error) {
-            dispatch(pushPath('/ticket'));
-          }
+    if (id && isChecked) {
+      actions.buyTicket(user.index._id, code)
+        .then(() => {
+          actions.push('/ticket');
         });
     }
   }
 
   render() {
-    const { checked, exist } = this.props.bus.toJS();
+    const { id, code, isChecked } = this.props.bus;
 
     return (
       <div className="main">
@@ -53,11 +68,12 @@ class BuyTicket extends Component {
 
           <Form
             inputLabel="Введите четырехзначный код, размещенный в автотранспорте"
-            inputHandler={this.checkBusHandler}
             infoText="С Вашего счета будет списано 4 650 руб"
             buttonText="Подтвердить"
-            buttonDisabled={!checked || !exist}
-            submitHandler={this.buyTicketHandler}
+            value={code}
+            onChange={this.checkBusHandler}
+            onSubmit={this.buyTicketHandler}
+            isValid={ id && isChecked }
           />
 
         </div>
@@ -67,8 +83,17 @@ class BuyTicket extends Component {
   }
 }
 
+BuyTicket.propTypes = propTypes;
+
 export default connect(state => ({
   user: state.user,
   bus: state.bus,
-  ticket: state.ticket
+}), dispatch => ({
+  actions: bindActionCreators({
+    checkBus,
+    uncheckBus,
+    setBusCode,
+    buyTicket,
+    push,
+  }, dispatch),
 }))(BuyTicket);

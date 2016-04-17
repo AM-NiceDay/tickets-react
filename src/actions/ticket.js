@@ -28,13 +28,12 @@ export function buyTicket(userId, busCode) {
   return {
     type: BUY_TICKET,
     payload: {
-      data: {
-        busCode
+      url: `/cities/${cityId}/buses/${busId}/tickets`,
+      method: 'post',
+      body: {
+        userId,
       },
-      promise: post(`/cities/${cityId}/buses/${busId}/tickets`, {
-        userId
-      })
-    }
+    },
   };
 }
 

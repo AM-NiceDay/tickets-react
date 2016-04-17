@@ -1,26 +1,20 @@
-import { get } from '../utils/fetch';
+import { createAction } from 'redux-actions';
 
 export const CHECK_BUS = 'CHECK_BUS';
 export const UNCHECK_BUS = 'UNCHECK_BUS';
+export const SET_BUS_CODE = 'SET_BUS_CODE';
+
+export const uncheckBus = createAction(UNCHECK_BUS);
+export const setBusCode = createAction(SET_BUS_CODE);
 
 export function checkBus(busCode) {
-
   const cityId = Number(String(busCode)[0]);
   const busId = Number(String(busCode).slice(1));
 
   return {
     type: CHECK_BUS,
     payload: {
-      data: {
-        busCode: busCode
-      },
-      promise: get(`/cities/${cityId}/buses/${busId}`)
-    }
+      url: `/cities/${cityId}/buses/${busId}`,
+    },
   };
-}
-
-export function uncheckBus() {
-  return {
-    type: UNCHECK_BUS
-  }
 }
