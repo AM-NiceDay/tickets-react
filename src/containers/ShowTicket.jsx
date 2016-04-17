@@ -16,7 +16,7 @@ const propTypes = {
   }),
 };
 
-function Ticket({ ticket, bus }) {
+function ShowTicket({ ticket, bus }) {
   return (
     <div>
       <div>
@@ -49,15 +49,14 @@ function Ticket({ ticket, bus }) {
   );
 }
 
-Ticket.propTypes = propTypes;
+ShowTicket.propTypes = propTypes;
 
 export default connect(state => {
-  const lastTicket = state.lastTicket;
-  const ticket = lastTicket.id ? state.tickets[lastTicket.id] : null;
+  const ticket = state.ticket.id ? state.tickets[state.ticket.id] : null;
   const bus = ticket ? state.buses[ticket.bus] : null;
 
   return {
     ticket,
     bus,
   };
-})(Ticket);
+})(ShowTicket);

@@ -11,9 +11,7 @@ import TicketNotExists from '../components/Ticket/NotExists';
 import Spinner from '../components/Spinner';
 
 const propTypes = {
-  lastTicket: PropTypes.shape({
-    isLoading: PropTypes.bool.isRequired,
-  }),
+  isLoading: PropTypes.bool.isRequired,
   ticket: PropTypes.object,
   bus: PropTypes.shape({
     route: PropTypes.number,
@@ -36,9 +34,9 @@ class Ticket extends Component {
   }
 
   render() {
-    const { lastTicket, ticket, bus, actions } = this.props;
+    const { isLoading, ticket, bus, actions } = this.props;
 
-    return lastTicket.isLoading ?
+    return isLoading ?
       <Spinner /> :
       (
         <div>
@@ -72,12 +70,11 @@ class Ticket extends Component {
 Ticket.propTypes = propTypes;
 
 export default connect(state => {
-  const lastTicket = state.lastTicket;
-  const ticket = lastTicket.id ? state.tickets[lastTicket.id] : null;
+  const ticket = state.ticket.id ? state.tickets[state.ticket.id] : null;
   const bus = ticket ? state.buses[ticket.bus] : null;
 
   return {
-    lastTicket,
+    isLoading: state.ticket.isLoading,
     ticket,
     bus,
     user: state.user.index,

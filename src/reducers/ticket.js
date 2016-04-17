@@ -1,19 +1,34 @@
 import { GET_TICKET, BUY_TICKET } from '../actions/ticket';
-import { Map, fromJS } from 'immutable';
 
-export default function(state = {}, action) {
+const initialState = {
+  isLoading: false,
+};
+
+export default function (state = initialState, action) {
   switch (action.type) {
+    case `${GET_TICKET}_LOADING`:
+      return {
+        ...state,
+        isLoading: true,
+      };
     case `${GET_TICKET}_SUCCESS`:
-      return action.payload[0];
-    case `${BUY_TICKET}_LOADING`:
-      return Map({
-        busCode: action.payload,
-        loading: true
-      });
+      return {
+        ...state,
+        id: action.payload[0]._id,
+        isLoading: false,
+      };
+    case `${GET_TICKET}_ERROR`:
+      return {
+        ...state,
+        id: undefined,
+        isLoading: false,
+      };
     case `${BUY_TICKET}_SUCCESS`:
-      return fromJS(action.payload);
-    case `${BUY_TICKET}_ERROR`:
-      return fromJS(action.payload);
+      return {
+        ...state,
+        id: action.payload._id,
+        isLoading: false,
+      };
     default:
       return state;
   }

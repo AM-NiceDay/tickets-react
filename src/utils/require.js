@@ -18,14 +18,13 @@ export default function (store) {
       }
     },
     requireTicket: (nextState, replaceState) => {
-      const lastTicket = store.getState().lastTicket;
+      const ticket = store.getState().ticket;
 
-      if (!lastTicket.id) {
+      if (!ticket.id) {
         replaceState({}, '/ticket');
       }
     },
     redirectBasedOnUserType: (nextState, replaceState) => {
-      console.log('here');
       const user = store.getState().user.index;
       if (user.role && user.role === 'controller') {
         store.dispatch(setNextPathname(nextState.location.pathname));
