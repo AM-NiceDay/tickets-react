@@ -5,7 +5,7 @@ export default React.createClass({
     return(
         <div className="page-news">
           <div className="page-entry__header">
-            <a className="link-element link-menu" to="/">—</a>
+            <a className="link-element link-menu" to="/"></a>
             <span className="page-logo page-entry__logo">Новости</span>
           </div>
             <span className="news-wrapper">

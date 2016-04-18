@@ -57,7 +57,7 @@ class Verify extends Component {
         <div className="page-entry">
 
           <div className="page-entry__header">
-            <a className="link-element link-menu" onClick={actions.showSideBar}>-</a>
+            <a className="link-element link-menu" onClick={actions.showSideBar}></a>
             <span className="page-logo page-entry__logo">|||||</span>
           </div>
 

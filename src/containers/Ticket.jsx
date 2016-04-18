@@ -44,7 +44,7 @@ class Ticket extends Component {
             <div className="page-ticket">
               <div className="page-ticket__header">
                 <div className="link-element page-ticket__link-element">
-                  <a className="link-element link-menu" onClick={actions.showSideBar}>—</a>
+                  <a className="link-element link-menu" onClick={actions.showSideBar}></a>
                 </div>
                 <span className="page-ticket__logo">Билет</span>
                 <div className="link-element page-ticket__link-element">

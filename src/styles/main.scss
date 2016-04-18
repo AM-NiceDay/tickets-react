@@ -111,10 +111,20 @@ $active-button-color: lighten($primary-color,75%);
   left:-25px;
   &:before{
     content:"—";
-    position:relative;
+    position:absolute;
     top:-8px;
     left:23.5px;
   }
+  &:after{
+    content:"—";
+    position:absolute;
+    left:23.5px;
+  }
+}
+.link-element-reload{
+  font-size: 27px;
+  position:relative;
+  top:-7px;
 }
 
 .page-logo{
@@ -236,6 +246,10 @@ $active-button-color: lighten($primary-color,75%);
 .page-ticket__link-element{
   flex: 1;
 }
+.page-ticket__link-element-reload{
+  position:absolute;
+  right:0;
+}
 .page-ticket__logo{
   flex: 1;
   text-align:center;
@@ -315,6 +329,7 @@ $active-button-color: lighten($primary-color,75%);
   @include flex-direction(column);
   justify-content: center;
   width: 90%;
+  z-index:1;
 }
 .profile-block{
   @include flexbox;
@@ -490,6 +505,14 @@ $active-button-color: lighten($primary-color,75%);
   padding-left:35px;
 }
 
+
+/* mod */
+.form_justify-start{
+  @include flex-justify-content(flex-start);
+}
+.m_btm{
+  margin-bottom:20px;
+}
 
 /* Media Query */
 @media (max-height:335px){
