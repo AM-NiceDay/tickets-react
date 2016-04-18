@@ -1,11 +1,7 @@
 import _ from 'lodash';
 
-export default function (value, validator) {
-  return validator(value);
-}
-
 export function isPhoneNumber(value) {
-  return _.isNumber(Number(value)) && value.length === 9;
+  return _.isNumber(Number(value)) && !_.isNaN(Number(value)) && String(value).length === 9;
 }
 
 export function isEmail(value) {

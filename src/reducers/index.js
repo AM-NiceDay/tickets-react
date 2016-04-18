@@ -1,10 +1,14 @@
 import { combineReducers } from 'redux';
-import { routeReducer } from 'redux-simple-router';
+import { routerReducer as routing } from 'react-router-redux';
 import user from './user';
 import draft from './user/draft';
-import bus from './bus';
 import ticket from './ticket';
+import bus from './bus';
+import question from './question';
+import tickets from './tickets';
+import buses from './buses';
 import busTickets from './busTickets';
+import sideBar from './sideBar';
 import verifiableTicket from './verifiableTicket';
 
 export default combineReducers({
@@ -12,9 +16,13 @@ export default combineReducers({
     index: user,
     draft,
   }),
-  bus,
   ticket,
+  bus,
+  question,
+  tickets,
+  buses,
   busTickets,
   verifiableTicket,
-  routing: routeReducer,
+  sideBar,
+  routing,
 });

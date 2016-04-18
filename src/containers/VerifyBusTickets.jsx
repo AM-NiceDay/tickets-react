@@ -1,66 +1,107 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import Rx from 'rx';
+import { Link } from 'react-router';
 import _ from 'lodash';
-import { getBusTickets, verifyTicket, unsetVerifiableTicket } from '../actions/ticket';
+import { getBusTickets, setTicketId, setIsChecked, resetTicket } from '../actions/ticket';
 import { getFormattedTime, getFormattedDate } from '../helpers/dateHelper';
-import { formatBusCode } from '../helpers/busCodeHelper';
+import Form from '../components/Form';
 
-const propTypes = {};
+const propTypes = {
+  ticketId: PropTypes.string,
+  isChecked: PropTypes.bool,
+  ticket: PropTypes.shape({
+    created: PropTypes.string,
+  }),
+  bus: PropTypes.shape({
+    route: PropTypes.number,
+  }),
+  params: PropTypes.shape({
+    busCode: PropTypes.string,
+  }),
+  actions: PropTypes.shape({
+    getBusTickets: PropTypes.func,
+    setTicketId: PropTypes.func,
+    setIsChecked: PropTypes.func,
+    resetTicket: PropTypes.func,
+  }),
+};
 
 class VerifyBusTickets extends Component {
-
   constructor(props) {
     super(props);
+
+    this.checkTicketHandler = this.checkTicketHandler.bind(this);
+    this.updateTickets = this.updateTickets.bind(this);
   }
 
   componentDidMount() {
-    const source = Rx.Observable.fromEvent(this.refs.ticketId, 'keyup')
-      .map(event => event.target.value);
+    this.updateTickets();
+  }
 
-    source.filter(id => id.length !== 4)
-      .subscribe(this.props.unsetVerifiableTicket);
+  checkTicketHandler(ticketId) {
+    const { actions } = this.props;
 
-    source.filter(id => id.length === 4)
-      .distinctUntilChanged()
-      .throttle(250)
-      .map(id => _.find(this.props.busTickets, { _id: id }))
-      .subscribe(this.props.verifyTicket);
+    actions.setTicketId(ticketId);
+    if (ticketId.length === 4) {
+      actions.setIsChecked();
+    }
+  }
 
-    this.props.getBusTickets(this.props.params.busCode);
+  updateTickets() {
+    const { params, actions } = this.props;
+
+    actions.getBusTickets(params.busCode);
   }
 
   render() {
-    const ticket = this.props.verifiableTicket;
-    const bus = ticket.bus;
+    const { ticketId, isChecked, ticket, bus, params, actions } = this.props;
 
     return (
-      <div>
-        <input type="text" ref="ticketId" />
+      <div className="main">
+        <div className="page-entry">
 
-        {
-          ticket.verified ? (
-            <div>
-              <p>Код билета</p>
-              <h2>{ticket._id}</h2>
-              <p>Время оплаты</p>
-              <p>{getFormattedTime(new Date(ticket.created))}, {getFormattedDate(new Date(ticket.created))}</p>
-              <p>Номер маршрута</p>
-              <h3>№{bus.route}</h3>
-              <p>Код автотранспорта</p>
-              <p>{formatBusCode(bus.cityId, bus._id)}</p>
+          <div className="page-entry__header">
+            <Link className="link-element page-entry__link-element" to="/verify">{'←'}</Link>
+            <span className="page-logo page-entry__logo">Автобус №{bus.route}</span>
+            <div className="link-element page-ticket__link-element">
+              <a
+                className="link-element page-ticket__link-buy-ticket"
+                onClick={this.updateTickets}
+              >
+                update
+              </a>
             </div>
-          ) : null
-        }
+          </div>
 
-        {
-          ticket.error ? (
-            <div>
-              Билета не существует
-            </div>
-          ) : null
-        }
+          <Form
+            inputLabel="Введите четырехзначный код билета пассажира"
+            buttonText="Очистить"
+            value={ticketId || ''}
+            onChange={this.checkTicketHandler}
+            onSubmit={actions.resetTicket}
+            isValid
+          />
+
+          {
+            isChecked && ticket &&
+              <div>
+                <p>Код билета</p>
+                <h2>{ticketId}</h2>
+                <p>Время оплаты</p>
+                <p>
+                  {getFormattedTime(new Date(ticket.created))}
+                  {', '}
+                  {getFormattedDate(new Date(ticket.created))}
+                </p>
+                <p>Номер маршрута</p>
+                <h3>№{bus.route}</h3>
+                <p>Код автотранспорта</p>
+                <p>{params.busCode}</p>
+              </div>
+          }
+
+        </div>
       </div>
     );
   }
@@ -68,11 +109,21 @@ class VerifyBusTickets extends Component {
 
 VerifyBusTickets.propTypes = propTypes;
 
-export default connect(state => ({
-  busTickets: state.busTickets,
-  verifiableTicket: state.verifiableTicket
-}), dispatch => ({
-  getBusTickets: bindActionCreators(getBusTickets, dispatch),
-  verifyTicket: bindActionCreators(verifyTicket, dispatch),
-  unsetVerifiableTicket: bindActionCreators(unsetVerifiableTicket, dispatch)
+export default connect((state, props) => {
+  const ticket = state.ticket.id ? state.tickets[state.ticket.id] : null;
+  const bus = state.buses[props.params.busCode];
+
+  return {
+    ticketId: state.ticket.id,
+    isChecked: state.ticket.isChecked,
+    ticket,
+    bus,
+  };
+}, dispatch => ({
+  actions: bindActionCreators({
+    getBusTickets,
+    setTicketId,
+    setIsChecked,
+    resetTicket,
+  }, dispatch),
 }))(VerifyBusTickets);

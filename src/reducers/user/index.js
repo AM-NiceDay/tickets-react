@@ -12,14 +12,12 @@ import {
 export default function(state = {}, action) {
   switch(action.type) {
     case `${GET_USER_INFO}_LOADING`:
-      return Object.assign({}, {
-        loading: true
-      });
+      return { loading: true };
     case `${GET_USER_INFO}_SUCCESS`:
-      return Object.assign({}, {
+      return {
         ...action.payload.user,
         loading: false
-      });
+      };
     case `${SIGN_IN}_LOADING`:
     case `${SIGN_UP}_LOADING`:
       return Object.assign({}, {
@@ -27,23 +25,25 @@ export default function(state = {}, action) {
       });
     case `${SIGN_IN}_SUCCESS`:
     case `${SIGN_UP}_SUCCESS`:
-      return fromJS(action.payload.user).merge({
+      return {
+        ...action.payload.user,
         token: action.payload.token,
         loggedIn: true,
-        loading: false
-      });
+        loading: false,
+      };
     case `${SIGN_IN}_ERROR`:
     case `${SIGN_UP}_ERROR`:
-      return Map({
+      return {
         error: true,
         loading: false
-      });
+      };
     case LOGOUT:
-      return Map();
+      return {};
     case SET_NEXT_PATHNAME:
-      return state.merge({
+      return {
+        ...state,
         nextPathname: action.payload.nextPathname
-      });
+      };
     default:
       return state;
   }

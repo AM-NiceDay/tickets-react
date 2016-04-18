@@ -4,7 +4,7 @@ const LOADING = 'LOADING';
 const SUCCESS = 'SUCCESS';
 const FAILURE = 'FAILURE';
 
-export default function (options) {
+export default function () {
   return ({ dispatch, getState }) => next => action => {
     if (!action || !action.payload || !action.payload.url) {
       return next(action);
@@ -20,12 +20,12 @@ export default function (options) {
       },
     } = action;
 
-    const authToken = getState().user.token;
+    const authToken = getState().user.index.token;
 
-    dispatch({
+    setTimeout(() => next({
       type: `${type}_${LOADING}`,
-      payload: data,
-    });
+      ...!!data ? { payload: data } : {},
+    }));
 
     return fetch(`http://localhost:3000${url}`, {
       method,

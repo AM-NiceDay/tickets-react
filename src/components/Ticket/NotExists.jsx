@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function({ formattedDate }) {
+export default function ({ formattedDate }) {
   return (
     <div className="page-ticket__information-wrapper">
 

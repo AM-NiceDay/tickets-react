@@ -2,9 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import { checkBus, uncheckBus, setBusCode } from '../actions/bus';
-import { buyTicket } from '../actions/ticket';
-import { Link } from 'react-router';
+import { showSideBar } from '../actions/sideBar';
+import { checkBus, uncheckBus, setBusCode, resetBus } from '../actions/bus';
 import Form from '../components/Form';
 
 const propTypes = {
@@ -13,22 +12,23 @@ const propTypes = {
     code: PropTypes.string,
     isChecked: PropTypes.bool,
   }),
-  user: PropTypes.shape({
-    _id: PropTypes.string,
-  }),
   actions: PropTypes.shape({
     checkBus: PropTypes.func,
     uncheckBus: PropTypes.func,
     setBusCode: PropTypes.func,
+    resetBus: PropTypes.func,
+    push: PropTypes.func,
   }),
 };
 
-class BuyTicket extends Component {
+class Verify extends Component {
   constructor(props) {
     super(props);
 
     this.checkBusHandler = this.checkBusHandler.bind(this);
-    this.buyTicketHandler = this.buyTicketHandler.bind(this);
+    this.verifyBusHandler = this.verifyBusHandler.bind(this);
+
+    this.props.actions.resetBus();
   }
 
   checkBusHandler(busCode) {
@@ -43,57 +43,50 @@ class BuyTicket extends Component {
     }
   }
 
-  buyTicketHandler() {
-    const { user, bus: { id, code, isChecked}, actions } = this.props;
+  verifyBusHandler() {
+    const { bus, actions } = this.props;
 
-    if (id && isChecked) {
-      actions.buyTicket(user.index._id, code)
-        .then(() => {
-          actions.push('/ticket');
-        });
-    }
+    actions.push(`/verify-bus-tickets/${bus.code}`);
   }
 
   render() {
-    const { id, code, isChecked } = this.props.bus;
+    const { bus: { id, code, isChecked }, actions } = this.props;
 
     return (
       <div className="main">
         <div className="page-entry">
 
           <div className="page-entry__header">
-            <Link className="link-element page-entry__link-element" to="/ticket">{'←'}</Link>
+            <a className="link-element link-menu" onClick={actions.showSideBar}>-</a>
             <span className="page-logo page-entry__logo">|||||</span>
           </div>
 
           <Form
             inputLabel="Введите четырехзначный код, размещенный в автотранспорте"
-            infoText="С Вашего счета будет списано 4 650 руб"
-            buttonText="Подтвердить"
+            buttonText="Начать проверку"
             value={code}
             onChange={this.checkBusHandler}
-            onSubmit={this.buyTicketHandler}
-            isValid={ id && isChecked }
+            onSubmit={this.verifyBusHandler}
+            isValid={id && isChecked}
           />
 
         </div>
       </div>
-
     );
   }
 }
 
-BuyTicket.propTypes = propTypes;
+Verify.propTypes = propTypes;
 
 export default connect(state => ({
-  user: state.user,
   bus: state.bus,
 }), dispatch => ({
   actions: bindActionCreators({
     checkBus,
     uncheckBus,
     setBusCode,
-    buyTicket,
+    showSideBar,
+    resetBus,
     push,
   }, dispatch),
-}))(BuyTicket);
+}))(Verify);
