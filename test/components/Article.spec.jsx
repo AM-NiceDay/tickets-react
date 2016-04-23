@@ -12,7 +12,7 @@ describe('<Article />', () => {
     expect(wrapper.find('.news__heading')).to.have.text('Test title');
   });
 
-  it('renders write amount of text items', () => {
+  it('renders correct amount of text items', () => {
     const wrapper = shallow(<Article newsItem={newsItem} />);
 
     expect(wrapper.find('.news-wrapper').find('p')).to.have.length(2);

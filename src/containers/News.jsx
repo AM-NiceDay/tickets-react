@@ -12,7 +12,7 @@ const propTypes = {
   }).isRequired,
 };
 
-class News extends Component {
+export class News extends Component {
   componentDidMount() {
     this.props.actions.getNews();
   }
@@ -26,7 +26,7 @@ class News extends Component {
           <a className="link-element link-menu" to="/"></a>
           <span className="page-logo page-entry__logo">Новости</span>
         </div>
-        {news.map(newsItem => <Article newsItem={newsItem} />)}
+        {news.map(newsItem => <Article newsItem={newsItem} key={newsItem._id} />)}
       </div>
     );
   }
