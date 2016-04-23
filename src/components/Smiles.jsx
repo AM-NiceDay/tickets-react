@@ -20,7 +20,7 @@ function Smiles({ currentReaction, onReactionChange }) {
 }
 
 Smiles.propTypes = {
-  currentReaction: PropTypes.string.isRequired,
+  currentReaction: PropTypes.string,
   onReactionChange: PropTypes.func.isRequired,
 };
 
