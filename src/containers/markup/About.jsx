@@ -5,7 +5,7 @@ export default React.createClass({
     return(
         <div className="page-about">
           <div className="page-entry__header">
-            <a className="link-element link-menu" to="/">—</a>
+            <a className="link-element link-menu" to="/"></a>
             <span className="page-logo page-entry__logo">О проекте</span>
           </div>
           <span className="about-project-wrapper">

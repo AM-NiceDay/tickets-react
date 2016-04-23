@@ -64,12 +64,12 @@ class VerifyBusTickets extends Component {
           <div className="page-entry__header">
             <Link className="link-element page-entry__link-element" to="/verify">{'←'}</Link>
             <span className="page-logo page-entry__logo">Автобус №{bus.route}</span>
-            <div className="link-element page-ticket__link-element">
+            <div className="page-ticket__link-element-reload">
               <a
-                className="link-element page-ticket__link-buy-ticket"
+                className="link-element-reload"
                 onClick={this.updateTickets}
               >
-                update
+                ↻
               </a>
             </div>
           </div>

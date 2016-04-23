@@ -6,7 +6,7 @@ export default React.createClass({
         <div className="main">
           <div className="page-entry">
             <div className="page-entry__header">
-              <a className="link-element link-menu" to="/">—</a>
+              <a className="link-element link-menu" to="/"></a>
               <span className="page-logo page-entry__logo">Помощь</span>
             </div>
             <form className="page-feedback__form" >
