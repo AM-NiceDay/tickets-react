@@ -9,7 +9,7 @@ const news = [
   { _id: '2', title: 'Test title 2', text: ['Another test text'] },
 ];
 
-describe.only('<News />', () => {
+describe('<News />', () => {
   it('renders correct amount of articles', () => {
     const wrapper = shallow(<News news={news} actions={{ getNews: x => x }} />);
 
