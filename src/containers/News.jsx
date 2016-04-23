@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import fp from 'lodash/fp';
 import { getNews } from '../actions/news';
+import Article from '../components/Article';
 
 const propTypes = {
   news: PropTypes.array.isRequired,
@@ -25,18 +26,7 @@ class News extends Component {
           <a className="link-element link-menu" to="/"></a>
           <span className="page-logo page-entry__logo">Новости</span>
         </div>
-          {
-            news.map(item => (
-              <span className="news-wrapper" key={item._id}>
-                <h1 className="news__heading">{item.title}</h1>
-                {
-                  item.text.map(textItem => (
-                    <p key={textItem}>{textItem}</p>
-                  ))
-                }
-              </span>
-            ))
-          }
+        {news.map(newsItem => <Article newsItem={newsItem} />)}
       </div>
     );
   }
