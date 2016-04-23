@@ -12,6 +12,7 @@ import Verify from './containers/Verify';
 import VerifyBusTickets from './containers/VerifyBusTickets';
 import Help from './containers/Help';
 import About from './containers/About';
+import News from './containers/News';
 /*
 import SignUp from './containers/SignUp';
 import SignUpFirstStep from './containers/SignUp/SignUpFirstStep';
@@ -53,6 +54,7 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
 
       <Route path="help" component={Help} />
       <Route path="about" component={About} />
+      <Route path="news" component={News} />
 
       <Route path="markup">
         <Route path="Index" component={IndexMarkup} />
