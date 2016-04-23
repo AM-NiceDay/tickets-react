@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import _ from 'lodash';
 import withValue from '../utils/withValue';
 import { setQuestionText, setQuestionReaction, resetQuestion, sendQuestion } from '../actions/question';
+import Smiles from '../components/Smiles';
 
 const propTypes = {
   question: PropTypes.shape({
@@ -49,19 +50,10 @@ class Help extends Component {
           </div>
           <div className="page-feedback__form">
             <div className="feedback-wrapper">
-              <div className="tempSmiles">
-                {
-                  ['Positive', 'Neutral', 'Negative'].map(reaction => (
-                    <a
-                      key={reaction}
-                      onClick={this.changeReactionHandler(_.toLower(reaction))}
-                      style={_.toLower(reaction) !== question.reaction ? { color: 'gray' } : {}}
-                    >
-                      {reaction}
-                    </a>
-                  ))
-                }
-              </div>
+              <Smiles
+                currentReaction={question.reaction}
+                onReactionChange={this.changeReactionHandler}
+              />
               <p className="page-feedback__description">
                 Здесь вы можете задать любой вопрос о Tickets
               </p>
