@@ -3,10 +3,11 @@ import _ from 'lodash';
 
 function Smiles({ currentReaction, onReactionChange }) {
   return (
-    <div className="tempSmiles">
+    <div className="smiles">
       {
-        ['Positive', 'Neutral', 'Negative'].map(reaction => (
+        [':)', ':|', ':('].map(reaction => (
           <a
+            className="smile-wrap"
             key={reaction}
             onClick={onReactionChange(_.toLower(reaction))}
             style={_.toLower(reaction) !== currentReaction ? { color: 'gray' } : {}}

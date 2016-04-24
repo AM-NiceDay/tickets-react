@@ -284,11 +284,41 @@ $active-button-color: lighten($primary-color,75%);
   font-size:28px;
   padding:5px 0 ;
 }
-.page-ticket__bus-number{
-  text-transform:uppercase;
-  font-weight:300;
-  font-size:58px;
-  padding:5px 0 ;
+.ticket-info__description{
+  font-size:13.5px;
+  opacity:0.9;
+  margin:3px 0 1.5px;
+}
+.ticket-info-id{
+  font-size:17px;
+}
+.ticket-info-id_large{
+  font-size:56px;
+  font-weight:400;
+}
+.bus-number{
+  text-transform: uppercase;
+  font-size:21px;
+}
+.bus-number_large{
+  font-weight: 300;
+  font-size:54px;
+}
+.ticket-info__time{
+  display:inline-block;
+  font-size:18px;
+  font-weight: 400;
+  &:after{
+    content:'\00a0';
+  }
+}
+.ticket-info-block{
+  position:fixed;
+  bottom: 9%;
+  left:30px;
+}
+.ticket-info_bold{
+  font-weight:bold;
 }
 .page-ticket__info-line{
   padding-top:5px;
@@ -310,9 +340,6 @@ $active-button-color: lighten($primary-color,75%);
   text-align:center;
   margin-bottom:30px;
   padding: 0 5px;
-}
-.page-ticket__button{
-
 }
 
 /* Page Profile */
@@ -505,18 +532,56 @@ $active-button-color: lighten($primary-color,75%);
   padding-left:35px;
 }
 
+/* show ticket page*/
+.showticket{
+  margin-top:10px;
+}
+.showticket-help{
+  margin-top:30px;
+  text-align:center;
+}
+.help-description{
+  font-size:14px;
+  margin-bottom:15px;
+}
 
 /* mod */
 .form_justify-start{
   @include flex-justify-content(flex-start);
+
+  .page-entry__description{
+    margin-bottom:20px;
+  }
+  .page-entry__input-prefix{
+    margin-bottom:30px;
+  }
 }
-.m_btm{
-  margin-bottom:20px;
+
+
+/* smiles */
+.smiles{
+  font-size:45px;
+  font-family:monospace;
+  margin-bottom:10px;
 }
+.smile-wrap{
+  margin-right: 14px;
+  &:last-child{
+    margin-right:0;
+  }
+  border: 5px solid;
+  min-width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  text-align: left;
+  padding: 6px 5px;
+  writing-mode: tb-rl;
+}
+
 
 /* Media Query */
 @media (max-height:335px){
-  .tempSmiles{
+  .smiles{
     display:none;
   }
 }

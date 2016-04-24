@@ -58,7 +58,11 @@ class Verify extends Component {
 
           <div className="page-entry__header">
             <a className="link-element link-menu" onClick={actions.showSideBar}></a>
-            <span className="page-logo page-entry__logo">|||||</span>
+            <span className="page-logo page-entry__logo">
+                <svg  width="24" height="24" viewBox="0 0 24 24">
+                  <path d="M2,6H4V18H2V6M5,6H6V18H5V6M7,6H10V18H7V6M11,6H12V18H11V6M14,6H16V18H14V6M17,6H20V18H17V6M21,6H22V18H21V6Z" />
+                </svg>
+            </span>
           </div>
 
           <Form
