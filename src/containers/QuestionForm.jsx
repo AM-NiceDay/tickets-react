@@ -16,6 +16,7 @@ const propTypes = {
     text: PropTypes.string,
     reaction: PropTypes.string,
   }),
+  params: PropTypes.object,
   actions: PropTypes.shape({
     setQuestionText: PropTypes.func,
     setQuestionReaction: PropTypes.func,
@@ -37,9 +38,9 @@ class QuestionForm extends Component {
   }
 
   sendQuestionHandler() {
-    const { type, question, actions } = this.props;
+    const { type, question, params = {}, actions } = this.props;
 
-    actions.sendQuestion(type, question.text, question.reaction);
+    actions.sendQuestion(type, question.text, question.reaction, params);
     actions.resetQuestion();
   }
 

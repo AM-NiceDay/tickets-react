@@ -9,7 +9,7 @@ export const setQuestionText = createAction(SET_QUESTION_TEXT);
 export const setQuestionReaction = createAction(SET_QUESTION_REACTION);
 export const resetQuestion = createAction(RESET_QUESTION);
 
-export function sendQuestion(type, text, reaction = 'neutral') {
+export function sendQuestion(type, text, reaction = 'neutral', params) {
   return {
     type: SEND_QUESTION,
     payload: {
@@ -19,6 +19,7 @@ export function sendQuestion(type, text, reaction = 'neutral') {
         type,
         text,
         reaction,
+        ...params,
       },
     },
   };
