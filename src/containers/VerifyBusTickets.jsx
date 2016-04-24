@@ -81,6 +81,7 @@ class VerifyBusTickets extends Component {
             onChange={this.checkTicketHandler}
             onSubmit={actions.resetTicket}
             isValid
+            className={isChecked && ticket ? 'temp-class' : ''}
           />
 
           {

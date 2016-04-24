@@ -12,6 +12,7 @@ const propTypes = {
   onChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
+  className: PropTypes.String,
 };
 
 function Form({
@@ -24,9 +25,10 @@ function Form({
   onChange,
   onSubmit,
   isValid,
+  className = '',
 }) {
   return (
-    <div className="page-entry__form">
+    <div className={`page-entry__form ${className}`}>
       <p className="page-entry__description" >{inputLabel}</p>
       <p className="page-entry__input-prefix">
         {inputPrefix}
