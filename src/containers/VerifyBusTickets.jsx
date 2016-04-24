@@ -81,24 +81,24 @@ class VerifyBusTickets extends Component {
             onChange={this.checkTicketHandler}
             onSubmit={actions.resetTicket}
             isValid
-            className={isChecked && ticket ? 'temp-class' : ''}
+            className={isChecked && ticket ? 'form_justify-start' : ''}
           />
 
           {
             isChecked && ticket &&
-              <div>
-                <p>Код билета</p>
-                <h2>{ticketId}</h2>
-                <p>Время оплаты</p>
-                <p>
+              <div className="ticket-info-block">
+                <p className="ticket-info__description">Код билета</p>
+                <h2 className="ticket-info-id">{ticketId}</h2>
+                <p className="ticket-info__description">Время оплаты</p>
+                <p className="ticket-info__time ticket-info_bold">
                   {getFormattedTime(new Date(ticket.created))}
-                  {', '}
-                  {getFormattedDate(new Date(ticket.created))}
+                  {','}
                 </p>
-                <p>Номер маршрута</p>
-                <h3>№{bus.route}</h3>
-                <p>Код автотранспорта</p>
-                <p>{params.busCode}</p>
+                <p className="ticket-info__time">{getFormattedDate(new Date(ticket.created))}</p>
+                <p className="ticket-info__description">Номер маршрута</p>
+                <h3 className="bus-number">№{bus.route}</h3>
+                <p className="ticket-info__description">Код автотранспорта</p>
+                <p className="ticket-info_bold">{params.busCode}</p>
               </div>
           }
 

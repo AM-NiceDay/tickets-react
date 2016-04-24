@@ -6,7 +6,7 @@ export default function ({ formattedDate, route, routeName }) {
     <div className="page-ticket__information-wrapper">
       <div className="page-ticket__information">
         <p>{formattedDate}</p>
-        <h1 className="page-ticket__bus-number">№{route}</h1>
+        <h1 className="bus-number bus-number_large">№{route}</h1>
         <p>{routeName}</p>
         <p className="page-ticket__info-line">Благодарим за своевременную оплату</p>
       </div>

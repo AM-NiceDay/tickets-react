@@ -31,6 +31,7 @@ import NewsMarkup from './containers/markup/News.jsx';
 import NewsExpandedMarkup from './containers/markup/NewsExpanded.jsx';
 import IndexControlMarkup from './containers/markup/IndexControl.jsx';
 import TempPageNotForUseMarkup from './containers/markup/TempPageNotForUse.jsx';
+import ShowTicketMarkup from './containers/markup/ShowTicket.jsx';
 
 export default function getRoutes({ requireAuth, requireController, requireTicket, requireBus, redirectBasedOnUserType }) { // eslint-disable-line
   return (
@@ -69,6 +70,7 @@ export default function getRoutes({ requireAuth, requireController, requireTicke
         <Route path="NewsExpanded" component={NewsExpandedMarkup} />
         <Route path="IndexControl" component={IndexControlMarkup} />
         <Route path="TempPageNotForUse" component={TempPageNotForUseMarkup} />
+        <Route path="ShowTicket" component={ShowTicketMarkup} />
       </Route>
     </Route>
   );
